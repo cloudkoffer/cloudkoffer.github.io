@@ -2,3 +2,25 @@ site_name: Cloudkoffer
 
 theme:
   name: material
+
+nav:
+  - Home: 'index.md'
+  - 'Hardware':
+    - Concept: 'hardware/concept.md'
+    - Revision v1: 'hardware/revision-v1.md'
+    - Revision v2: 'hardware/revision-v2.md'
+    - Revision v3: 'hardware/revision-v3.md'
+    - Revision v4: 'hardware/revision-v4.md'
+  - 'Software':
+    - IaC: 'software/iac.md'
+    - CaC: 'software/cac.md'
+    - GitOps: 'software/gitops.md'
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: "#"
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
