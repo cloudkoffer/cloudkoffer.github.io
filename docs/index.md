@@ -5,12 +5,7 @@ hide:
 
 # Cloudkoffer
 
-## Repositories
-
-- [:simple-github: Infrastructure as Code (IaC)](https://github.com/cloudkoffer/IaC)
-- [:simple-github: Configuration as Code (CaC)](https://github.com/cloudkoffer/CaC)
-- [:simple-github: GitOps](https://github.com/cloudkoffer/GitOps)
-
+<!--
 ## Building a Cluster
 
 - Boot Talos in maintenence mode.
@@ -26,3 +21,4 @@ hide:
 
 - Apply `Infrastructure as Code (IaC)`
 - Apply `Configuration as Code (CaC)`
+-->

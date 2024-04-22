@@ -1,5 +1,7 @@
 # Talos
 
+- [:simple-github: provisioning-cluster-talos](https://github.com/cloudkoffer/provisioning-cluster-talos)
+
 [Talos Linux](https://www.talos.dev) is Linux designed for Kubernetes – secure, immutable, and minimal.
 
 - Supports cloud platforms, bare metal, and virtualization platforms
