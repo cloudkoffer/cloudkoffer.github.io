@@ -2,19 +2,33 @@ site_name: Cloudkoffer
 
 theme:
   name: material
+  features:
+    # - navigation.instant
+    # - navigation.instant.progress
+    # - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
+    # - toc.integrate
 
 nav:
   - Home: 'index.md'
-  - 'Hardware':
-    - Concept: 'hardware/concept.md'
-    - Revision v1: 'hardware/revision-v1.md'
-    - Revision v2: 'hardware/revision-v2.md'
-    - Revision v3: 'hardware/revision-v3.md'
-    - Revision v4: 'hardware/revision-v4.md'
-  - 'Software':
-    - IaC: 'software/iac.md'
-    - CaC: 'software/cac.md'
-    - GitOps: 'software/gitops.md'
+  - Construction:
+    - construction/index.md
+    - Cloudkoffer v1: 'construction/revision-v1.md'
+    - Cloudkoffer v2: 'construction/revision-v2.md'
+    - Cloudkoffer v3: 'construction/revision-v3.md'
+    - Cloudkoffer v4: 'construction/revision-v4.md'
+  - Provisioning:
+    - provisioning/index.md
+    - Cluster:
+      - Talos: 'provisioning/cluster/talos.md'
+    - GitOps:
+      - Flux: 'provisioning/gitops/flux.md'
 
 markdown_extensions:
   - attr_list
