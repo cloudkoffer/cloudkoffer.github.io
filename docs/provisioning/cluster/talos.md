@@ -32,7 +32,7 @@
     cd provisioning-cluster-talos
     ```
 
-- Install [talosctl](https://www.talos.dev/v1.7/introduction/getting-started/#talosctl).
+- Install and configure [talosctl](https://www.talos.dev/v1.7/introduction/getting-started/#talosctl).
 
     === "CLI"
 
