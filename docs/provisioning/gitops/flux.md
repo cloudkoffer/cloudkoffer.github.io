@@ -66,7 +66,7 @@
         }
 
         provider "github" {
-          owner = "qaware"
+          owner = "cloudkoffer"
           token = var.github_token
         }
 
@@ -76,10 +76,10 @@
           }
 
           git = {
-            url    = "ssh://git@github.com/${data.github_repository.this.full_name}.git"
-            ssh = {
-              username    = "git"
-              private_key = tls_private_key.this.private_key_pem
+            url = "https://github.com/cloudkoffer/gitops-flux.git"
+            http = {
+              username = "git"
+              password = var.github_token
             }
           }
         }
@@ -90,9 +90,7 @@
     === "CLI"
 
         ``` shell
-        if [ ! -f "configs/${CLUSTER_NAME}.agekey" ]; then
-          age-keygen --output "configs/${CLUSTER_NAME}.agekey"
-        fi
+        age-keygen --output "configs/${CLUSTER_NAME}.agekey"
         ```
 
     === "Terraform"
