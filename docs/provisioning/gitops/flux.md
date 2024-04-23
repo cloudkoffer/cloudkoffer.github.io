@@ -118,11 +118,12 @@
 
         ``` shell
         resource "local_file" "this" {
-          content = templatefile("tftpl/.sops.yaml",
-            {
-              public_key = age_secret_key.this.public_key,
-            }
-          )
+          content = <<-EOT
+          creation_rules:
+            - path_regex: .*.yaml
+              encrypted_regex: ^(data|stringData)$
+              age: ${age_secret_key.this.public_key}
+          EOT
           filename = "../../deployment-stack/configs/${var.cluster_name}.sops.yaml"
         }
         ```
@@ -158,12 +159,11 @@
           }
 
           data = {
-            "age.agekey" = templatefile("tftpl/age.agekey",
-              {
-                public_key = age_secret_key.this.public_key,
-                secret_key = age_secret_key.this.secret_key,
-              }
-            )
+            "age.agekey" = <<-EOT
+            # created: 2023-01-01T00:00:00+01:00
+            # public key: ${age_secret_key.this.public_key}
+            ${age_secret_key.this.secret_key}
+            EOT
           }
         }
         ```
