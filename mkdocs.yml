@@ -3,6 +3,9 @@ site_name: Cloudkoffer
 theme:
   name: material
   features:
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
     # - navigation.instant
     # - navigation.instant.progress
     # - navigation.tracking
@@ -31,10 +34,26 @@ nav:
       - Flux: 'provisioning/gitops/flux.md'
 
 markdown_extensions:
+  - admonition
   - attr_list
   - md_in_html
-  - toc:
-      permalink: "#"
+  - pymdownx.details
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      # anchor_linenums: true
+      pygments_lang_class: true
+      # linenums: true
+      line_spans: __span
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - tables
+  - toc:
+      permalink: "#"
