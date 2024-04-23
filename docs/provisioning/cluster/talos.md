@@ -32,34 +32,6 @@
     cd provisioning-cluster-talos
     ```
 
-- Install and configure [talosctl](https://www.talos.dev/v1.7/introduction/getting-started/#talosctl).
-
-    === "CLI"
-
-        ``` shell
-        curl -sL https://talos.dev/install | sh
-        ```
-
-    === "Terraform"
-
-        ``` terraform title="provider.tf"
-        terraform {
-          required_providers {
-            # https://github.com/siderolabs/terraform-provider-talos/releases
-            talos = {
-              source  = "siderolabs/talos"
-              version = "0.5.0"
-            }
-          }
-        }
-
-        provider "talos" {}
-        ```
-
-        ``` shell
-        curl -sL https://talos.dev/install | sh
-        ```
-
 - Configure environment variables.
 
     === "CLI"
@@ -90,6 +62,34 @@
 
         ``` shell
         CLUSTER_NAME=talos-cloudkoffer-v3
+        ```
+
+- Install and configure [talosctl](https://www.talos.dev/v1.7/introduction/getting-started/#talosctl).
+
+    === "CLI"
+
+        ``` shell
+        curl -sL https://talos.dev/install | sh
+        ```
+
+    === "Terraform"
+
+        ``` terraform title="provider.tf"
+        terraform {
+          required_providers {
+            # https://github.com/siderolabs/terraform-provider-talos/releases
+            talos = {
+              source  = "siderolabs/talos"
+              version = "0.5.0"
+            }
+          }
+        }
+
+        provider "talos" {}
+        ```
+
+        ``` shell
+        curl -sL https://talos.dev/install | sh
         ```
 
 - Boot the nodes using either USB sticks or a network boot (F12).
