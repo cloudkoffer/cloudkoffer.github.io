@@ -25,14 +25,14 @@
 
 ## Installation Steps
 
-- Checkout the [:simple-github: provisioning-gitops-flux](https://github.com/cloudkoffer/provisioning-gitops-flux) repository.
+- Checkout the [:simple-github: provisioning-cluster-talos](https://github.com/cloudkoffer/provisioning-cluster-talos) repository.
 
     ``` shell
     git clone https://github.com/cloudkoffer/provisioning-cluster-talos
     cd provisioning-cluster-talos
     ```
 
-- Install talosctl.
+- Install [talosctl](https://www.talos.dev/v1.7/introduction/getting-started/#talosctl).
 
     === "CLI"
 
