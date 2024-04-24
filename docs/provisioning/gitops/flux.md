@@ -22,8 +22,9 @@
 
     === "CLI"
 
-        ``` shell
-        ```
+        - <https://github.com/FiloSottile/age>
+        - <https://kubernetes.io/docs/tasks/tools/>
+        - <https://fluxcd.io/flux/cmd/>
 
     === "Terraform"
 
@@ -95,8 +96,12 @@
 
     === "Terraform"
 
-        ``` shell
+        ``` shell title="main.tf"
         resource "age_secret_key" "this" {}
+        ```
+
+        ``` shell
+        terraform apply
         ```
 
 - Create SOPS configuration.
@@ -114,7 +119,7 @@
 
     === "Terraform"
 
-        ``` shell
+        ``` shell title="main.tf"
         resource "local_file" "this" {
           content = <<-EOT
           creation_rules:
@@ -126,6 +131,10 @@
         }
         ```
 
+        ``` shell
+        terraform apply
+        ```
+
 - Create SOPS Kubernetes secret.
 
     === "CLI"
@@ -134,16 +143,12 @@
         kubectl create namespace flux-system &>/dev/null || true
         kubectl create secret generic sops-age \
           --namespace=flux-system \
-          --from-file="configs/${CLUSTER_NAME}.agekey" \
-          --dry-run=client \
-          --output=yaml \
-          --save-config | \
-        kubectl apply -f -
+          --from-file="configs/${CLUSTER_NAME}.agekey"
         ```
 
     === "Terraform"
 
-        ``` shell
+        ``` shell title="main.tf"
         resource "kubernetes_namespace" "flux_system" {
           metadata {
             name = "flux-system"
@@ -158,12 +163,16 @@
 
           data = {
             "age.agekey" = <<-EOT
-            # created: 2023-01-01T00:00:00+01:00
+            # created: 2024-01-01T00:00:00+01:00
             # public key: ${age_secret_key.this.public_key}
             ${age_secret_key.this.secret_key}
             EOT
           }
         }
+        ```
+
+        ``` shell
+        terraform apply
         ```
 
 - Bootstrap flux.

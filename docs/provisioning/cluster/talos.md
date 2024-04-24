@@ -86,9 +86,7 @@
 
     === "CLI"
 
-        ``` shell
-        curl -sL https://talos.dev/install | sh
-        ```
+        - <https://www.talos.dev/v1.7/introduction/getting-started/#talosctl>
 
     === "Terraform"
 
