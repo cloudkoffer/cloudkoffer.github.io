@@ -5,6 +5,10 @@ hide:
 
 # Cloudkoffer
 
+!!! example "Work in Progress"
+
+    This website was only recently launched and is gradually being filled with content.
+
 With this personal project I would like to show how easy it can be to build a mobile, mainly declarative and self-reproducible bare-metal developer platform based on Kubernetes with simple means. Rapidly deploying a local Kubernetes cluster may be a breeze these days, but when it comes to scaling and building a comprehensive open source developer platform, numerous challenges emerge.
 
 <!--

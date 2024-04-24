@@ -20,7 +20,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
 - Checkout the [:simple-github: provisioning-cluster-talos](https://github.com/cloudkoffer/provisioning-cluster-talos) repository.
 
-    ``` shell
+    ``` shell title="Shell"
     git clone https://github.com/cloudkoffer/provisioning-cluster-talos
     cd provisioning-cluster-talos
     ```
@@ -29,7 +29,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "CLI"
 
-        ``` shell
+        ``` shell title="Shell"
         CLUSTER_NAME="talos-cloudkoffer-v3"
         CLUSTER_ENDPOINT="https://192.168.1.101:6443"
         TALOS_VERSION="v1.7.0"
@@ -52,7 +52,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "Terraform"
 
-        ``` shell
+        ``` shell title="Shell"
         TF_VAR_cluster_name="talos-cloudkoffer-v3"
         TF_VAR_cluster_endpoint="https://192.168.1.101:6443"
         TF_VAR_talos_version="1.7.0"
@@ -83,7 +83,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "Terraform"
 
-        ``` terraform title="provider.tf"
+        ``` terraform title="File: provider.tf"
         terraform {
           required_providers {
             # https://github.com/siderolabs/terraform-provider-talos/releases
@@ -97,7 +97,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         provider "talos" {}
         ```
 
-        ``` shell
+        ``` shell title="Shell"
         curl -sL https://talos.dev/install | sh
         ```
 
@@ -105,7 +105,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
 - Wait until the nodes have entered maintenance mode.
 
-    ``` shell
+    ``` shell title="Shell"
     for node in "${NODES_CONTROLPLANE[@]}"; do
       echo -n "Node ${node}: "
       talosctl get machinestatus \
@@ -127,7 +127,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "CLI"
 
-        ``` shell
+        ``` shell title="Shell"
         talosctl gen secrets \
           --output-file=secrets.yaml \
           --talos-version="${TALOS_VERSION}"
@@ -135,7 +135,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "Terraform"
 
-        ``` terraform title="variables.tf"
+        ``` terraform title="File: variables.tf"
         variable "talos_version" {
           description = "The talos version for the Talos cluster."
           type        = string
@@ -143,13 +143,13 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
         ```
 
-        ``` terraform title="main.tf"
+        ``` terraform title="File: main.tf"
         resource "talos_machine_secrets" "this" {
           talos_version = var.talos_version
         }
         ```
 
-        ``` shell
+        ``` shell title="Shell"
         terraform apply
         ```
 
@@ -157,7 +157,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "CLI"
 
-        ``` shell
+        ``` shell title="Shell"
         talosctl config endpoint 192.168.1.1 192.168.1.2 192.168.1.3 \
           --talosconfig=talosconfig
         talosctl config node 192.168.1.1 \
@@ -168,7 +168,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "Terraform"
 
-        ``` terraform title="variables.tf"
+        ``` terraform title="File: variables.tf"
         variable "cluster_name" {
           description = "The name for the Talos cluster."
           type        = string
@@ -185,7 +185,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
         ```
 
-        ``` terraform title="main.tf"
+        ``` terraform title="File: main.tf"
         data "talos_client_configuration" "this" {
           client_configuration = talos_machine_secrets.this.client_configuration
           cluster_name         = var.cluster_name
@@ -194,14 +194,14 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
         ```
 
-        ``` terraform title="outputs.tf"
+        ``` terraform title="File: outputs.tf"
         output "talosconfig" {
           value     = data.talos_client_configuration.this.talos_config
           sensitive = true
         }
         ```
 
-        ``` shell
+        ``` shell title="Shell"
         terraform apply
 
         terraform output -raw talosconfig > talosconfig
@@ -213,7 +213,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "CLI"
 
-        ``` shell
+        ``` shell title="Shell"
         talosctl gen config "${CLUSTER_NAME}" https://192.168.1.101:6443 \
           --endpoints="${CLUSTER_ENDPOINT}" \
           --with-secrets=secrets.yaml \
@@ -230,7 +230,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "Terraform"
 
-        ``` terraform title="variables.tf"
+        ``` terraform title="File: variables.tf"
         variable "cluster_name" {
           description = "The name for the Talos cluster."
           type        = string
@@ -251,7 +251,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
         ```
 
-        ``` terraform title="main.tf"
+        ``` terraform title="File: main.tf"
         data "talos_machine_configuration" "controlplane" {
           cluster_endpoint = var.cluster_endpoint
           cluster_name     = var.cluster_name
@@ -286,7 +286,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
         ```
 
-        ``` shell
+        ``` shell title="Shell"
         terraform apply
         ```
 
@@ -294,7 +294,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "CLI"
 
-        ``` shell
+        ``` shell title="Shell"
         for node in "${NODES_CONTROLPLANE[@]}"; do
           talosctl apply-config \
             --insecure \
@@ -312,7 +312,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "Terraform"
 
-        ``` terraform title="variables.tf"
+        ``` terraform title="File: variables.tf"
         variable "nodes" {
           description = "A map of node data."
           type = object({
@@ -323,7 +323,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
         ```
 
-        ``` terraform title="main.tf"
+        ``` terraform title="File: main.tf"
         resource "talos_machine_configuration_apply" "controlplane" {
           for_each = toset(var.nodes.controlplane)
 
@@ -341,7 +341,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
         ```
 
-        ``` shell
+        ``` shell title="Shell"
         terraform apply
         ```
 
@@ -349,13 +349,13 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "CLI"
 
-        ``` shell
+        ``` shell title="Shell"
         talosctl bootstrap
         ```
 
     === "Terraform"
 
-        ``` terraform title="variables.tf"
+        ``` terraform title="File: variables.tf"
         variable "nodes" {
           description = "A map of node data."
           type = object({
@@ -366,7 +366,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
         ```
 
-        ``` terraform title="main.tf"
+        ``` terraform title="File: main.tf"
         resource "talos_machine_bootstrap" "this" {
           client_configuration = talos_machine_secrets.this.client_configuration
           node                 = var.nodes.controlplane[0]
@@ -377,19 +377,19 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
         ```
 
-        ``` shell
+        ``` shell title="Shell"
         terraform apply
         ```
 
 - Wait until cluster is healthy.
 
-    ``` shell
+    ``` shell title="Shell"
     talosctl health
     ```
 
 - Retrieve kubeconfig.
 
-    ``` shell
+    ``` shell title="Shell"
     talosctl kubeconfig
     kubectl config use-context "admin@${CLUSTER_NAME}"
     ```
@@ -398,7 +398,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
 - Configure environment variables.
 
-    ``` shell
+    ``` shell title="Shell"
     CLUSTER_NAME="talos-cloudkoffer-v3"
     TALOS_VERSION="v1.7.0"
     KUBERNETES_VERSION="1.30.0"
@@ -410,7 +410,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
         Perform the upgrade one by one for each node.
 
-    ``` shell
+    ``` shell title="Shell"
     talosctl upgrade \
       --image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
       --context="${CLUSTER_NAME}" \
@@ -423,7 +423,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
         Use if the above upgrade fails due to a process holding a file open on disk.
 
-    ``` shell
+    ``` shell title="Shell"
     talosctl upgrade \
       --image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
       --stage \
@@ -438,7 +438,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
 - Upgrade Kubernetes.
 
-    ``` shell
+    ``` shell title="Shell"
     talosctl upgrade-k8s \
       --to="${KUBERNETES_VERSION}" \
       --context="${CLUSTER_NAME}"
