@@ -2,18 +2,11 @@
 
 ## Description
 
-[Talos Linux](https://www.talos.dev) is Linux designed for Kubernetes – secure, immutable, and minimal.
+Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Talos is fully open source, production-ready, and supported by the people at Sidero Labs All system management is done via an API - there is no shell or interactive console. Benefits include:
 
-- Supports cloud platforms, bare metal, and virtualization platforms
-- All system management is done via an API. No SSH, shell or console
-- Production ready: supports some of the largest Kubernetes clusters in the world
-- Open source project from the team at Sidero Labs
-
-### Why Talos Linux?
-
-- **Security** - Talos reduces your attack surface. It's minimal, hardened and immutable. All API access is secured with mutual TLS (mTLS) authentication.
-- **Predictability** - Talos eliminates configuration drift, reduces unknown factors by employing immutable infrastructure ideology, and delivers atomic updates.
-- **Evolvability** - Talos simplifies your architecture, increases your agility, and always delivers current stable Kubernetes and Linux versions.
+- **Security**: Talos reduces your attack surface: It's minimal, hardened, and immutable. All API access is secured with mutual TLS (mTLS) authentication.
+- **Predictability**: Talos eliminates configuration drift, reduces unknown factors by employing immutable infrastructure ideology, and delivers atomic updates.
+- **Evolvability**: Talos simplifies your architecture, increases your agility, and always delivers current stable Kubernetes and Linux versions.
 
 ### Features
 
