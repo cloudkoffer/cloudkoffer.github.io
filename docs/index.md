@@ -11,6 +11,14 @@ hide:
 
 With this personal project I would like to show how easy it can be to build a mobile, mainly declarative and self-reproducible bare-metal developer platform based on Kubernetes with simple means. Rapidly deploying a local Kubernetes cluster may be a breeze these days, but when it comes to scaling and building a comprehensive open source developer platform, numerous challenges emerge.
 
+<div class="grid" markdown>
+
+![Cloudkoffer v2 - 1](construction/img/cloudkoffer-v2-1.jpg "Cloudkoffer v2 - 1")
+
+![Cloudkoffer v3 - 1](construction/img/cloudkoffer-v3-1.jpg "Cloudkoffer v3 - 1")
+
+</div>
+
 <!--
 ## Building a Cluster
 

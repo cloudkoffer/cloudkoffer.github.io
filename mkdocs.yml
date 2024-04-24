@@ -35,6 +35,10 @@ nav:
     - GitOps:
       - Flux: 'provisioning/gitops/flux.md'
 
+plugins:
+  - search
+  - glightbox
+
 markdown_extensions:
   - admonition
   - attr_list
@@ -49,6 +53,7 @@ markdown_extensions:
       # linenums: true
       line_spans: __span
   - pymdownx.inlinehilite
+  - pymdownx.keys
   - pymdownx.snippets
   - pymdownx.superfences
   - pymdownx.tabbed:
