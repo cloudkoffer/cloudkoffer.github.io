@@ -6,15 +6,17 @@ theme:
     - content.code.copy
     - content.code.annotate
     - content.tabs.link
+    # - header.autohide
+    - navigation.expand
+    - navigation.footer
+    - navigation.indexes
     # - navigation.instant
     # - navigation.instant.progress
-    # - navigation.tracking
+    - navigation.sections
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.sections
-    - navigation.expand
-    - navigation.indexes
     - navigation.top
+    # - navigation.tracking
     - toc.follow
     # - toc.integrate
 
@@ -57,3 +59,20 @@ markdown_extensions:
   - tables
   - toc:
       permalink: "#"
+
+extra:
+  social:
+    - name: Personal Website
+      icon: fontawesome/solid/house-user
+      link: https://andreas.kowasch.de
+    - name: GitHub Profile
+      icon: fontawesome/brands/github
+      link: https://github.com/akowasch
+    - name: LinkedIn Profile
+      icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/akowasch/
+    - name: Xing Profile
+      icon: fontawesome/brands/xing
+      link: https://www.xing.com/profile/Andreas_Kowasch
+
+copyright: Created by Andreas Kowasch
