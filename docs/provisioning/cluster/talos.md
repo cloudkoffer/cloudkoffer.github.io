@@ -41,27 +41,45 @@
         CLUSTER_ENDPOINT="https://192.168.1.101:6443"
         TALOS_VERSION="v1.7.0"
         KUBERNETES_VERSION="1.30.0"
-
-        case "${CLUSTER_NAME}" in
-          talos-cloudkoffer-v1)
-            ALL_NODES=5
-            CONTROLPLANE_NODES=1
-            ;;
-          talos-cloudkoffer-v2)
-            ALL_NODES=10
-            CONTROLPLANE_NODES=3
-            ;;
-          talos-cloudkoffer-v3)
-            ALL_NODES=10
-            CONTROLPLANE_NODES=3
-            ;;
-        esac
+        NODES_CONTROLPLANE=(
+          "192.168.1.1"
+          "192.168.1.2"
+          "192.168.1.3"
+        )
+        NODES_WORKER=(
+          "192.168.1.4"
+          "192.168.1.5"
+          "192.168.1.6"
+          "192.168.1.7"
+          "192.168.1.8"
+          "192.168.1.9"
+          "192.168.1.10"
+        )
         ```
 
     === "Terraform"
 
         ``` shell
-        CLUSTER_NAME=talos-cloudkoffer-v3
+        TF_VAR_cluster_name="talos-cloudkoffer-v3"
+        TF_VAR_cluster_endpoint="https://192.168.1.101:6443"
+        TF_VAR_talos_version="1.7.0"
+        TF_VAR_kubernetes_version="1.30.0"
+        TF_VAR_nodes='{
+          "controlplane"=[
+            "192.168.1.1",
+            "192.168.1.2",
+            "192.168.1.3"
+          ],
+          "worker"=[
+            "192.168.1.4",
+            "192.168.1.5",
+            "192.168.1.6",
+            "192.168.1.7",
+            "192.168.1.8",
+            "192.168.1.9",
+            "192.168.1.10"
+          ]
+        }'
         ```
 
 - Install and configure [talosctl](https://www.talos.dev/v1.7/introduction/getting-started/#talosctl).
@@ -97,11 +115,19 @@
 - Wait until the nodes have entered maintenance mode.
 
     ``` shell
-    for i in {1..${ALL_NODES}}; do
-      echo -n "Node ${i}: "
+    for node in "${NODES_CONTROLPLANE[@]}"; do
+      echo -n "Node ${node}: "
       talosctl get machinestatus \
         --insecure \
-        --nodes "192.168.1.${i}" \
+        --nodes "${node}" \
+        --output jsonpath='{.spec.stage}'
+    done
+
+    for node in "${NODES_WORKER[@]}"; do
+      echo -n "Node ${node}: "
+      talosctl get machinestatus \
+        --insecure \
+        --nodes "${node}" \
         --output jsonpath='{.spec.stage}'
     done
     ```
@@ -133,7 +159,7 @@
         ```
 
         ``` shell
-        terraform apply -var-file="configs/${CLUSTER_NAME}.tfvars"
+        terraform apply
         ```
 
 - Create talos client configuration.
@@ -185,7 +211,7 @@
         ```
 
         ``` shell
-        terraform apply -var-file="configs/${CLUSTER_NAME}.tfvars"
+        terraform apply
 
         terraform output -raw talosconfig > talosconfig
         talosctl config merge talosconfig
@@ -270,7 +296,7 @@
         ```
 
         ``` shell
-        terraform apply -var-file="configs/${CLUSTER_NAME}.tfvars"
+        terraform apply
         ```
 
 - Apply talos machine configuration.
@@ -278,17 +304,17 @@
     === "CLI"
 
         ``` shell
-        for i in {1..${CONTROLPLANE_NODES}}; do
+        for node in "${NODES_CONTROLPLANE[@]}"; do
           talosctl apply-config \
             --insecure \
-            --nodes="192.168.1.${i}" \
+            --nodes="${node}" \
             --file=controlplane.yaml
         done
 
-        for i in {$((CONTROLPLANE_NODES+1))..$((ALL_NODES))}; do
+        for node in "${NODES_WORKER[@]}"; do
           talosctl apply-config \
             --insecure \
-            --nodes="192.168.1.${i}" \
+            --nodes="${node}" \
             --file=worker.yaml
         done
         ```
@@ -325,7 +351,7 @@
         ```
 
         ``` shell
-        terraform apply -var-file="configs/${CLUSTER_NAME}.tfvars"
+        terraform apply
         ```
 
 - Bootstrap kubernetes cluster.
@@ -361,7 +387,7 @@
         ```
 
         ``` shell
-        terraform apply -var-file="configs/${CLUSTER_NAME}.tfvars"
+        terraform apply
         ```
 
 - Wait until cluster is healthy.
