@@ -153,70 +153,12 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         terraform apply
         ```
 
-- Create talos client configuration.
-
-    === "CLI"
-
-        ``` shell title="Shell"
-        talosctl config endpoint 192.168.1.1 192.168.1.2 192.168.1.3 \
-          --talosconfig=talosconfig
-        talosctl config node 192.168.1.1 \
-          --talosconfig=talosconfig
-        talosctl config merge talosconfig
-        talosctl config use-context "${CLUSTER_NAME}"
-        ```
-
-    === "Terraform"
-
-        ``` terraform title="File: variables.tf"
-        variable "cluster_name" {
-          description = "The name for the Talos cluster."
-          type        = string
-          nullable    = false
-        }
-
-        variable "nodes" {
-          description = "A map of node data."
-          type = object({
-            controlplane = list(string)
-            worker       = list(string)
-          })
-          nullable = false
-        }
-        ```
-
-        ``` terraform title="File: main.tf"
-        data "talos_client_configuration" "this" {
-          client_configuration = talos_machine_secrets.this.client_configuration
-          cluster_name         = var.cluster_name
-          endpoints            = var.nodes.controlplane
-          nodes                = [var.nodes.controlplane[0]]
-        }
-        ```
-
-        ``` terraform title="File: outputs.tf"
-        output "talosconfig" {
-          value     = data.talos_client_configuration.this.talos_config
-          sensitive = true
-        }
-        ```
-
-        ``` shell title="Shell"
-        terraform apply
-
-        terraform output -raw talosconfig > talosconfig
-        talosctl config merge talosconfig
-        talosctl config use-context "${CLUSTER_NAME}"
-        ```
-
-- Create talos machine configuration.
+- Create talos client and machine configuration.
 
     === "CLI"
 
         ``` shell title="Shell"
         talosctl gen config "${CLUSTER_NAME}" https://192.168.1.101:6443 \
-          --endpoints="${CLUSTER_ENDPOINT}" \
-          --with-secrets=secrets.yaml \
           --config-patch="@../patches/${CLUSTER_NAME}/all.yaml" \
           --config-patch-control-plane="@../patches/${CLUSTER_NAME}/controlplane.yaml" \
           --config-patch-worker="@../patches/${CLUSTER_NAME}/worker.yaml" \
@@ -225,7 +167,15 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
           --kubernetes-version="${KUBERNETES_VERSION}" \
           --talos-version="${TALOS_VERSION}"
           --with-docs=false \
-          --with-examples=false
+          --with-examples=false \
+          --with-secrets=secrets.yaml
+
+        talosctl config endpoint 192.168.1.1 192.168.1.2 192.168.1.3 \
+          --talosconfig=talosconfig
+        talosctl config node 192.168.1.1 \
+          --talosconfig=talosconfig
+        talosctl config merge talosconfig
+        talosctl config use-context "${CLUSTER_NAME}"
         ```
 
     === "Terraform"
@@ -244,6 +194,15 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
           nullable    = false
         }
 
+        variable "nodes" {
+          description = "A map of node data."
+          type = object({
+            controlplane = list(string)
+            worker       = list(string)
+          })
+          nullable = false
+        }
+
         variable "kubernetes_version" {
           description = "The kubernetes version for the Talos cluster."
           type        = string
@@ -252,6 +211,13 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         ```
 
         ``` terraform title="File: main.tf"
+        data "talos_client_configuration" "this" {
+          client_configuration = talos_machine_secrets.this.client_configuration
+          cluster_name         = var.cluster_name
+          endpoints            = var.nodes.controlplane
+          nodes                = [var.nodes.controlplane[0]]
+        }
+
         data "talos_machine_configuration" "controlplane" {
           cluster_endpoint = var.cluster_endpoint
           cluster_name     = var.cluster_name
@@ -286,8 +252,19 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
         ```
 
+        ``` terraform title="File: outputs.tf"
+        output "talosconfig" {
+          value     = data.talos_client_configuration.this.talos_config
+          sensitive = true
+        }
+        ```
+
         ``` shell title="Shell"
         terraform apply
+
+        terraform output -raw talosconfig > talosconfig
+        talosctl config merge talosconfig
+        talosctl config use-context "${CLUSTER_NAME}"
         ```
 
 - Apply talos machine configuration.
@@ -396,14 +373,6 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
 ## Maintenance Steps
 
-- Configure environment variables.
-
-    ``` shell title="Shell"
-    CLUSTER_NAME="talos-cloudkoffer-v3"
-    TALOS_VERSION="v1.7.0"
-    KUBERNETES_VERSION="1.30.0"
-    ```
-
 - Upgrade Talos.
 
     !!! info
@@ -411,9 +380,10 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         Perform the upgrade one by one for each node.
 
     ``` shell title="Shell"
+    TALOS_VERSION="v1.7.0"
+
     talosctl upgrade \
       --image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
-      --context="${CLUSTER_NAME}" \
       --nodes 192.168.1.x
     ```
 
@@ -424,22 +394,23 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         Use if the above upgrade fails due to a process holding a file open on disk.
 
     ``` shell title="Shell"
+    TALOS_VERSION="v1.7.0"
+
     talosctl upgrade \
       --image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
       --stage \
-      --context="${CLUSTER_NAME}" \
       --nodes 192.168.1.x
 
     talosctl reboot \
       --wait \
-      --context="${CLUSTER_NAME}" \
       --nodes 192.168.1.x
     ```
 
 - Upgrade Kubernetes.
 
     ``` shell title="Shell"
+    KUBERNETES_VERSION="1.30.0"
+
     talosctl upgrade-k8s \
-      --to="${KUBERNETES_VERSION}" \
-      --context="${CLUSTER_NAME}"
+      --to="${KUBERNETES_VERSION}"
     ```
