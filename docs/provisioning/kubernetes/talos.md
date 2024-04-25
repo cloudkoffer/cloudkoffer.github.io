@@ -18,11 +18,11 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
 ## Installation Steps
 
-- Checkout the [:simple-github: provisioning-cluster-talos](https://github.com/cloudkoffer/provisioning-cluster-talos) repository.
+- Checkout the [:simple-github: provisioning-k8s-talos](https://github.com/cloudkoffer/provisioning-k8s-talos) repository.
 
     ``` shell title="Shell"
-    git clone https://github.com/cloudkoffer/provisioning-cluster-talos
-    cd provisioning-cluster-talos
+    git clone https://github.com/cloudkoffer/provisioning-k8s-talos
+    cd provisioning-k8s-talos
     ```
 
 - Configure environment variables.
@@ -190,7 +190,6 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         variable "cluster_endpoint" {
           description = "The endpoint for the Talos cluster."
           type        = string
-          default     = "https://192.168.1.101:6443"
           nullable    = false
         }
 
@@ -366,10 +365,18 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
 - Retrieve kubeconfig.
 
-    ``` shell title="Shell"
-    talosctl kubeconfig
-    kubectl config use-context "admin@${CLUSTER_NAME}"
-    ```
+    === "CLI"
+
+        ``` shell title="Shell"
+        talosctl kubeconfig
+        kubectl config use-context "admin@${CLUSTER_NAME}"
+        ```
+
+    === "Terraform"
+
+        ``` shell title="Shell"
+        terraform output -raw kubeconfig_raw > kubeconfig
+        ```
 
 ## Maintenance Steps
 

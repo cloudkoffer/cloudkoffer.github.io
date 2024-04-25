@@ -22,6 +22,8 @@ theme:
 
 nav:
   - Home: 'index.md'
+  - Blog:
+    - blog/index.md
   - Construction:
     - construction/index.md
     - Cloudkoffer v1: 'construction/revision-v1.md'
@@ -30,14 +32,18 @@ nav:
     - Cloudkoffer v4: 'construction/revision-v4.md'
   - Provisioning:
     - provisioning/index.md
-    - Cluster:
-      - Talos: 'provisioning/cluster/talos.md'
+    - Kubernetes:
+      - Talos: 'provisioning/kubernetes/talos.md'
     - GitOps:
       - Flux: 'provisioning/gitops/flux.md'
+  - Gadgets:
+    - gadgets/index.md
 
 plugins:
-  - search
+  - blog
   - glightbox
+  - search
+  - privacy
 
 markdown_extensions:
   - admonition
@@ -58,9 +64,12 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
+      combine_header_slug: true
       slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
           case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - tables
   - toc:
       permalink: "#"
