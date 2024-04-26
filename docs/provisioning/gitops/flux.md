@@ -34,7 +34,7 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
 
     === "Terraform"
 
-        ``` terraform title="File: variables.tf"
+        ``` terraform title="File: variables.tf" linenums="1"
         variable "github_token" {
           description = "The personal access token to authenticate to GitHub."
           type        = string
@@ -42,7 +42,7 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
         }
         ```
 
-        ``` terraform title="File: provider.tf"
+        ``` terraform title="File: provider.tf" linenums="1"
         terraform {
           required_providers {
             # https://github.com/clementblaise/terraform-provider-age/blob/main/CHANGELOG.md
@@ -102,7 +102,7 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
 
     === "Terraform"
 
-        ``` terraform title="File: main.tf"
+        ``` terraform title="File: main.tf" linenums="1"
         resource "age_secret_key" "this" {}
         ```
 
@@ -125,7 +125,7 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
 
     === "Terraform"
 
-        ``` terraform title="File: main.tf"
+        ``` terraform title="File: main.tf" linenums="1"
         resource "local_file" "this" {
           content = <<-EOT
           creation_rules:
@@ -154,7 +154,7 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
 
     === "Terraform"
 
-        ``` terraform title="File: main.tf"
+        ``` terraform title="File: main.tf" linenums="1"
         resource "kubernetes_namespace" "flux_system" {
           metadata {
             name = "flux-system"
@@ -195,7 +195,7 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
 
     === "Terraform"
 
-        ``` terraform title="File: variables.tf"
+        ``` terraform title="File: variables.tf" linenums="1"
         variable "cluster_name" {
           description = "The name for the Talos cluster."
           type        = string
@@ -203,7 +203,7 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
         }
         ```
 
-        ``` terraform title="File: main.tf"
+        ``` terraform title="File: main.tf" linenums="1"
         resource "flux_bootstrap_git" "this" {
           path           = "clusters/${var.cluster_name}"
           interval       = "1m0s"
