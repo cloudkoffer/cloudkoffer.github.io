@@ -1,4 +1,5 @@
 site_name: Cloudkoffer
+copyright: Created by Andreas Kowasch
 
 theme:
   name: material
@@ -20,29 +21,16 @@ theme:
     - toc.follow
     # - toc.integrate
 
-nav:
-  - Home: 'index.md'
-  - Blog:
-    - blog/index.md
-  - Construction:
-    - construction/index.md
-    - Cloudkoffer v1: 'construction/revision-v1.md'
-    - Cloudkoffer v2: 'construction/revision-v2.md'
-    - Cloudkoffer v3: 'construction/revision-v3.md'
-    - Cloudkoffer v4: 'construction/revision-v4.md'
-  - Provisioning:
-    - provisioning/index.md
-    - Kubernetes:
-      - Talos: 'provisioning/kubernetes/talos.md'
-    - GitOps:
-      - Flux: 'provisioning/gitops/flux.md'
-  - Gadgets:
-    - gadgets/index.md
-
 plugins:
-  - blog
+  - blog:
+      # archive_toc: true
+      blog_dir: updates
+      # blog_toc: true
+      # categories_toc: true
   - glightbox
   - search
+  - social
+  - tags
   - privacy
 
 markdown_extensions:
@@ -74,6 +62,25 @@ markdown_extensions:
   - toc:
       permalink: "#"
 
+nav:
+  - Home: 'index.md'
+  - Updates:
+    - updates/index.md
+  - Construction:
+    - construction/index.md
+    - Cloudkoffer v1: 'construction/revision-v1.md'
+    - Cloudkoffer v2: 'construction/revision-v2.md'
+    - Cloudkoffer v3: 'construction/revision-v3.md'
+    - Cloudkoffer v4: 'construction/revision-v4.md'
+  - Provisioning:
+    - provisioning/index.md
+    - Kubernetes:
+      - Talos: 'provisioning/kubernetes/talos.md'
+    - GitOps:
+      - Flux: 'provisioning/gitops/flux.md'
+  - Gadgets:
+    - gadgets/index.md
+
 extra:
   social:
     - name: Personal Website
@@ -88,5 +95,3 @@ extra:
     - name: Xing Profile
       icon: fontawesome/brands/xing
       link: https://www.xing.com/profile/Andreas_Kowasch
-
-copyright: Created by Andreas Kowasch
