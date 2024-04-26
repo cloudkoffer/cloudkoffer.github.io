@@ -82,6 +82,8 @@ nav:
       - Flux: 'provisioning/gitops/flux.md'
   - Gadgets:
     - gadgets/index.md
+    - Launchpad MK2: 'gadgets/launchpad-mk2.md'
+    - Launch Control: 'gadgets/launch-control.md'
 
 extra:
   social:
