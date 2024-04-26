@@ -92,10 +92,10 @@ nav:
     - updates/index.md
   - Construction:
     - construction/index.md
-    - Cloudkoffer v1: 'construction/revision-v1.md'
-    - Cloudkoffer v2: 'construction/revision-v2.md'
-    - Cloudkoffer v3: 'construction/revision-v3.md'
-    - Cloudkoffer v4: 'construction/revision-v4.md'
+    - Cloudkoffer v1: 'construction/cloudkoffer-v1.md'
+    - Cloudkoffer v2: 'construction/cloudkoffer-v2.md'
+    - Cloudkoffer v3: 'construction/cloudkoffer-v3.md'
+    - Cloudkoffer v4: 'construction/cloudkoffer-v4.md'
   - Provisioning:
     - provisioning/index.md
     - Kubernetes:
