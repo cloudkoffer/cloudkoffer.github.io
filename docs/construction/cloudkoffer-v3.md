@@ -48,19 +48,30 @@
 
 ## Router
 
-![Ubiquiti EdgeRouter X](img/router-EdgeRouter-X.jpg "Ubiquiti EdgeRouter X")
+<figure markdown="span">
+  ![Ubiquiti EdgeRouter X](img/router-EdgeRouter-X.jpg "Ubiquiti EdgeRouter X")
+  <figcaption>Ubiquiti EdgeRouter X</figcaption>
+</figure>
 
 ## Switch
 
-![Netgear GS116Ev2](img/switch-GS116Ev2.jpg "Netgear GS116Ev2")
+<figure markdown="span">
+  ![Netgear GS116Ev2](img/switch-GS116Ev2.jpg "Netgear GS116Ev2")
+  <figcaption>Netgear GS116Ev2 – 16-Port Gigabit Ethernet Plus Switch</figcaption>
+</figure>
 
 ## Node
 
-![Intel NUC 6i7KYB](img/node-NUC6i7KYB.jpg "Intel NUC 6i7KYB")
+<figure markdown="span">
+  ![Intel NUC 6i7KYK](img/node-NUC6i7KYK.jpg "Intel NUC 6i7KYK")
+  <figcaption>Intel NUC Kit NUC6i7KYK</figcaption>
+</figure>
+
+### Specifications
 
 Name       | Description
 ---------- | -----------
-Type       | [Intel NUC Kit NUC6i7KYB](https://ark.intel.com/content/www/us/en/ark/products/89187/intel-nuc-kit-nuc6i7kyk.html) ([Specs](https://www.intel.com/content/dam/support/us/en/documents/boardsandkits/NUC6i7KYK_TechProdSpec.pdf))
+Type       | [Intel NUC Kit NUC6i7KYK](https://ark.intel.com/content/www/us/en/ark/products/89187/intel-nuc-kit-nuc6i7kyk.html) ([Specs](https://www.intel.com/content/dam/support/us/en/documents/boardsandkits/NUC6i7KYK_TechProdSpec.pdf))
 UEFI       | [KYSKLi70.86A.0074.2021.1029.0102](https://www.intel.com/content/www/us/en/download/18677/bios-update-kyskli70.html)
 Processor  | Intel Core i7-6770HQ<br />:material-circle-medium: Base Frequency: 2.60 GHz<br />:material-circle-medium: Turbo Frequency: 3.50 GHz<br />:material-circle-medium: Cache: 6 MB (L3), 128 MB (L4)<br />:material-circle-medium: Cores/Threads: 4/8
 Memory     | 32 GB - 2x 16 GB (DDR4-2133)

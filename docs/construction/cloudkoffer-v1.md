@@ -4,15 +4,24 @@
 
 ## Router
 
-![Ubiquiti EdgeRouter X](img/router-EdgeRouter-X.jpg "Ubiquiti EdgeRouter X")
+<figure markdown="span">
+  ![Ubiquiti EdgeRouter X](img/router-EdgeRouter-X.jpg "Ubiquiti EdgeRouter X")
+  <figcaption>Ubiquiti EdgeRouter X</figcaption>
+</figure>
 
 ## Switch
 
-![TP-Link TL-SG108](img/switch-TL-SG108.jpg "TP-Link TL-SG108")
+<figure markdown="span">
+  ![TP-Link TL-SG108](img/switch-TL-SG108.jpg "TP-Link TL-SG108")
+  <figcaption>TP-Link TL-SG108 8-Port Gigabit Ethernet Unmanaged Switch</figcaption>
+</figure>
 
 ## Node
 
-![Intel NUC 6i3SYB](img/node-NUC6i3SYB.jpg "Intel NUC 6i3SYB")
+<figure markdown="span">
+  ![Intel NUC 6i3SYK](img/node-NUC6i3SYK.jpg "Intel NUC 6i3SYK")
+  <figcaption>Intel NUC Kit NUC6i3SYK</figcaption>
+</figure>
 
 ### Specifications
 
