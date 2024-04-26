@@ -3,6 +3,8 @@ copyright: Created by Andreas Kowasch
 
 theme:
   name: material
+  icon:
+    logo: simple/kubernetes
   features:
     - content.code.copy
     - content.code.annotate
