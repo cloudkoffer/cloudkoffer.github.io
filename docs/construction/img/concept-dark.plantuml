@@ -1,0 +1,32 @@
+@startuml concept-dark
+skinparam BackGroundColor transparent
+
+rectangle #efefef {
+  cloud WAN #A7E8E0
+  cloud lan_1 as "LAN 1" #A7E8E0
+  cloud lan_2 as "LAN 2" #A7E8E0
+  agent router #A0C5D3 [
+    <b>Router</b>
+    (DHCP, DNS, PXE/TFTP, NTP)
+  ]
+  agent switch as "Switch" #A0C5D3
+  frame control_plane as "Control Plane" #F7EAC9 {
+    agent "Node 1" as node_1 #F6CBC0
+    agent "Node 2" as node_2 #F6CBC0
+    agent "Node 3" as node_3 #F6CBC0
+  }
+  frame worker as "Worker" #F7EAC9 {
+    collections "Node ..." as nodes #F6CBC0
+  }
+
+  WAN -- router
+  lan_1 -- router
+  lan_2 -- router
+  router -- switch
+  switch -- node_1
+  switch -- node_2
+  switch -- node_3
+  switch -- nodes
+}
+
+@enduml
