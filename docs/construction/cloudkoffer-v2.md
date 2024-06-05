@@ -3,27 +3,27 @@
 <div class="grid" markdown>
 
 <figure markdown="span">
-  ![Cloudkoffer v2 - 1](img/cloudkoffer-v2-1.jpg "Cloudkoffer v2 - 1")
+  ![Cloudkoffer v2 - Front view (outer)](img/cloudkoffer-v2-1.jpg "Cloudkoffer v2 - Front view (outer)")
   <figcaption>Front view (outer)</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v2 - 2](img/cloudkoffer-v2-2.jpg "Cloudkoffer v2 - 2")
+  ![Cloudkoffer v2 - Back view (outer)](img/cloudkoffer-v2-2.jpg "Cloudkoffer v2 - Back view (outer)")
   <figcaption>Back view (outer)</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v2 - 3](img/cloudkoffer-v2-3.jpg "Cloudkoffer v2 - 3")
-  <figcaption>Top view (inner)</figcaption>
+  ![Cloudkoffer v2 - Top view (inner)](img/cloudkoffer-v2-3.jpg "Cloudkoffer v2 - Top view (inner)")
+  <figcaption>Top view (inner) - 1</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v2 - 4](img/cloudkoffer-v2-4.jpg "Cloudkoffer v2 - 4")
-  <figcaption>Power supply arrangement</figcaption>
+  ![Cloudkoffer v2 - Top view (inner) - 1](img/cloudkoffer-v2-4.jpg "Cloudkoffer v2 - Top view (inner) - 1")
+  <figcaption>Top view (inner) - 2</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v2 - 5](img/cloudkoffer-v2-5.jpg "Cloudkoffer v2 - 5")
+  ![Cloudkoffer v2 - Back view (inner)](img/cloudkoffer-v2-5.jpg "Cloudkoffer v2 - Back view (inner)")
   <figcaption>Back view (inner)</figcaption>
 </figure>
 

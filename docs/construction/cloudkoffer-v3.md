@@ -3,43 +3,43 @@
 <div class="grid" markdown>
 
 <figure markdown="span">
-  ![Cloudkoffer v3 - 1](img/cloudkoffer-v3-1.jpg "Cloudkoffer v3 - 1")
+  ![Cloudkoffer v3 - Front view (outer)](img/cloudkoffer-v3-1.jpg "Cloudkoffer v3 - Front view (outer)")
   <figcaption>Front view (outer)</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v3 - 2](img/cloudkoffer-v3-2.jpg "Cloudkoffer v3 - 2")
+  ![Cloudkoffer v3 - Back view (outer)](img/cloudkoffer-v3-2.jpg "Cloudkoffer v3 - Back view (outer)")
   <figcaption>Back view (outer)</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v3 - 3](img/cloudkoffer-v3-3.jpg "Cloudkoffer v3 - 3")
+  ![Cloudkoffer v3 - Top view (inner) - 1](img/cloudkoffer-v3-3.jpg "Cloudkoffer v3 - Top view (inner) - 1")
   <figcaption>Top view (inner) - 1</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v3 - 4](img/cloudkoffer-v3-4.jpg "Cloudkoffer v3 - 4")
+  ![Cloudkoffer v3 - Top view (inner) - 2](img/cloudkoffer-v3-4.jpg "Cloudkoffer v3 - Top view (inner) - 2")
   <figcaption>Top view (inner) - 2</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v3 - 5](img/cloudkoffer-v3-5.jpg "Cloudkoffer v3 - 5")
+  ![Cloudkoffer v3 - Bottom view (outer)](img/cloudkoffer-v3-5.jpg "Cloudkoffer v3 - Bottom view (outer)")
   <figcaption>Bottom view (outer)</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v3 - 6](img/cloudkoffer-v3-6.jpg "Cloudkoffer v3 - 6")
+  ![Cloudkoffer v3 - Side view (inner)](img/cloudkoffer-v3-6.jpg "Cloudkoffer v3 - Side view (inner)")
   <figcaption>Side view (inner)</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v3 - 7](img/cloudkoffer-v3-7.jpg "Cloudkoffer v3 - 7")
+  ![Cloudkoffer v3 - Bottom view (inner)](img/cloudkoffer-v3-7.jpg "Cloudkoffer v3 - Bottom view (inner)")
   <figcaption>Bottom view (inner)</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v3 - 8](img/cloudkoffer-v3-8.jpg "Cloudkoffer v3 - 8")
-  <figcaption>Back view (outer)</figcaption>
+  ![Cloudkoffer v3 - Back view (inner)](img/cloudkoffer-v3-8.jpg "Cloudkoffer v3 - Back view (inner)")
+  <figcaption>Back view (inner)</figcaption>
 </figure>
 
 </div>
