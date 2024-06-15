@@ -13,9 +13,11 @@ With this personal project I would like to show how easy it can be to build a mo
 
 <div class="grid" markdown>
 
-![Cloudkoffer v2 - 1](construction/img/cloudkoffer-v2-1.jpg "Cloudkoffer v2 - 1")
+![Cloudkoffer v3](construction/img/cloudkoffer-v3-1.jpg "Cloudkoffer v3")
 
-![Cloudkoffer v3 - 1](construction/img/cloudkoffer-v3-1.jpg "Cloudkoffer v3 - 1")
+![Cloudkoffer v2](construction/img/cloudkoffer-v2-1.jpg "Cloudkoffer v2")
+
+![Cloudkoffer v1](construction/img/cloudkoffer-v1-2.png "Cloudkoffer v1")
 
 </div>
 

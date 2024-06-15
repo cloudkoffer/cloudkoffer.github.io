@@ -13,12 +13,12 @@
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v2 - Top view (inner)](img/cloudkoffer-v2-3.jpg "Cloudkoffer v2 - Top view (inner)")
+  ![Cloudkoffer v2 - Top view (inner)](img/cloudkoffer-v2-3.jpg "Cloudkoffer v2 - Top view (inner) - 1")
   <figcaption>Top view (inner) - 1</figcaption>
 </figure>
 
 <figure markdown="span">
-  ![Cloudkoffer v2 - Top view (inner) - 1](img/cloudkoffer-v2-4.jpg "Cloudkoffer v2 - Top view (inner) - 1")
+  ![Cloudkoffer v2 - Top view (inner) - 1](img/cloudkoffer-v2-4.jpg "Cloudkoffer v2 - Top view (inner) - 2")
   <figcaption>Top view (inner) - 2</figcaption>
 </figure>
 

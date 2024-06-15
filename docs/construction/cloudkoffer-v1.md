@@ -1,5 +1,34 @@
 # Cloudkoffer v1
 
+<div class="grid" markdown>
+
+<figure markdown="span">
+  ![Cloudkoffer v1 - Front view (inner) - 1](img/cloudkoffer-v1-1.png "Cloudkoffer v1 - Front view (inner) - 1")
+  <figcaption>Front view (inner) - 1</figcaption>
+</figure>
+
+<figure markdown="span">
+  ![Cloudkoffer v1 - Front view (inner) - 2](img/cloudkoffer-v1-5.png "Cloudkoffer v1 - Front view (inner) - 2")
+  <figcaption>Front view (inner) - 2</figcaption>
+</figure>
+
+<figure markdown="span">
+  ![Cloudkoffer v1 - Top view (inner)](img/cloudkoffer-v1-2.png "Cloudkoffer v1 - Top view (inner)")
+  <figcaption>Top view (inner)</figcaption>
+</figure>
+
+<figure markdown="span">
+  ![Cloudkoffer v1 - Front view (outer)](img/cloudkoffer-v1-3.png "Cloudkoffer v1 - Front view (outer)")
+  <figcaption>Front view (outer)</figcaption>
+</figure>
+
+<figure markdown="span">
+  ![Cloudkoffer v1 - Back view (outer) - 1](img/cloudkoffer-v1-4.png "Cloudkoffer v1 - Back view (outer)")
+  <figcaption>Back view (outer)</figcaption>
+</figure>
+
+</div>
+
 ## Case
 
 ## Router
