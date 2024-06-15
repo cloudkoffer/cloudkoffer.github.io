@@ -1,0 +1,16 @@
+@startuml network-boot-state
+
+hide empty description
+
+state "UEFI" as uefi
+state "PXE" as pxe
+state "iPXE" as ipxe
+state "Image" as image
+
+[*] -> uefi
+uefi -> pxe
+pxe -> ipxe
+ipxe -> image
+image -> [*]
+
+@enduml

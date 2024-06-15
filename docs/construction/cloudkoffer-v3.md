@@ -53,6 +53,16 @@
   <figcaption>Ubiquiti EdgeRouter X</figcaption>
 </figure>
 
+### Port Assignment
+
+Port | Connection
+--- | ---
+**eth0** | WAN
+**eth1** | LAN1
+**eth2** | LAN2
+**eth3** | -
+**eth4** | Switch
+
 ## Switch
 
 <figure markdown="span">

@@ -98,6 +98,8 @@ nav:
     - Cloudkoffer v4: 'construction/cloudkoffer-v4.md'
   - Provisioning:
     - provisioning/index.md
+    - Network:
+      - Router: 'provisioning/network/router.md'
     - Kubernetes:
       - Talos: 'provisioning/kubernetes/talos.md'
     - GitOps:

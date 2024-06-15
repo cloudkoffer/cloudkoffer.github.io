@@ -1,0 +1,65 @@
+@startuml network-boot-sequence
+
+box "Node" #F6CBC0
+participant "UEFI" as uefi #FFF
+participant "PXE" as pxe #FFF
+participant "iPXE" as ipxe #FFF
+participant "Image" as image #FFF
+end box
+
+box "Router" #A0C5D3
+participant "DHCP" as dhcp #FFF
+participant "TFTP" as tftp #FFF
+end box
+
+uefi -> pxe : Load PXE
+
+activate pxe #E76F51
+
+group Request iPXE Firmware
+pxe -> dhcp : DHCP Request
+activate dhcp #264653
+dhcp -> pxe : DHCP Reply\n* Bootfile Server: ""router""\n* Bootfile Name: <back:#2A9D8F> ""ipxe.efi"" </back>
+deactivate dhcp
+pxe -> tftp : TFTP Get\n* ""ipxe.efi""
+activate tftp #264653
+tftp -> pxe : TFTP Reply\n* ""ipxe.efi""
+deactivate tftp
+end
+
+pxe -> ipxe : Load iPXE
+
+deactivate pxe
+activate ipxe #E76F51
+
+group Request iPXE Boot Script
+ipxe -> dhcp : DHCP Request
+activate dhcp #264653
+dhcp -> ipxe : DHCP Reply\n* Bootfile Server: ""router""\n* Bootfile Name: <back:#2A9D8F> ""boot.ipxe"" </back>
+deactivate dhcp
+ipxe -> tftp : TFTP Get\n* ""boot.ipxe""
+activate tftp #264653
+tftp -> ipxe : TFTP Reply\n* ""boot.ipxe""
+note right
+boot.ipxe
+---
+""#!ipxe""
+""initrd /initramfs.xz""
+""kernel /vmlinuz ...""
+end note
+deactivate tftp
+end
+
+group Request Image
+ipxe -> tftp : TFTP Get\n* ""initramfs4.xz""\n* ""vmlinuz""
+activate tftp #264653
+tftp -> ipxe : TFTP Reply\n* ""initramfs.xz""\n* ""vmlinuz""
+deactivate tftp
+end
+
+ipxe -> image: Boot Image
+
+deactivate ipxe
+activate image
+
+@enduml
