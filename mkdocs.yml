@@ -104,6 +104,11 @@ nav:
       - Talos: 'provisioning/kubernetes/talos.md'
     - GitOps:
       - Flux: 'provisioning/gitops/flux.md'
+    - Stack:
+      - Storage: 'provisioning/stack/storage.md'
+      - Connectivity: 'provisioning/stack/connectivity.md'
+      - Observability: 'provisioning/stack/observability.md'
+      - Security: 'provisioning/stack/security.md'
   - Gadgets:
     - gadgets/index.md
     - Launchpad MK2: 'gadgets/launchpad-mk2.md'

@@ -51,7 +51,7 @@ deactivate tftp
 end
 
 group Request Image
-ipxe -> tftp : TFTP Get\n* ""initramfs4.xz""\n* ""vmlinuz""
+ipxe -> tftp : TFTP Get\n* ""initramfs.xz""\n* ""vmlinuz""
 activate tftp #264653
 tftp -> ipxe : TFTP Reply\n* ""initramfs.xz""\n* ""vmlinuz""
 deactivate tftp
