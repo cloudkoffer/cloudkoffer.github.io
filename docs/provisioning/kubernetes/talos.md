@@ -154,6 +154,549 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         terraform apply
         ```
 
+- Create talos configuration patches.
+
+    ??? abstract "File: all.yaml"
+
+        === "Cloudkoffer v3"
+
+            ``` yaml linenums="1"
+            cluster:
+              discovery:
+                registries:
+                  service:
+                    disabled: true
+                  kubernetes:
+                    disabled: false
+              network:
+                # Use custom cni
+                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
+                cni:
+                  name: none
+              # Disable kube-proxy
+              # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
+              proxy:
+                disabled: true
+            machine:
+              install:
+                disk: /dev/nvme0n1
+                # https://github.com/siderolabs/talos/pkgs/container/installer
+                image: ghcr.io/siderolabs/installer:v1.7.4
+                extraKernelArgs:
+                  # Setting cpu scaling governor
+                  # https://www.talos.dev/latest/learn-more/knowledge-base/#setting-cpu-scaling-governor
+                  - cpufreq.default_governor=performance
+              kubelet:
+                extraArgs:
+                  # Enable metrics server
+                  # https://www.talos.dev/latest/kubernetes-guides/configuration/deploy-metrics-server/
+                  rotate-server-certificates: true
+                extraMounts:
+                  # Enable local storage
+                  # https://www.talos.dev/latest/kubernetes-guides/configuration/local-storage/
+                  - destination: /var/mnt
+                    type: bind
+                    source: /var/mnt
+                    options:
+                      - bind
+                      - rshared
+                      - rw
+              files:
+                # Expose containerd metrics
+                # https://www.talos.dev/latest/talos-guides/configuration/containerd/#exposing-metrics
+                - content: |
+                    [metrics]
+                      address = "0.0.0.0:11234"
+                  path: /etc/cri/conf.d/20-customization.part
+                  op: create
+              time:
+                servers:
+                  - 0.de.pool.ntp.org
+                  - 1.de.pool.ntp.org
+                  - 2.de.pool.ntp.org
+                  - 3.de.pool.ntp.org
+            ```
+
+        === "Cloudkoffer v2"
+
+            ``` yaml linenums="1"
+            cluster:
+              discovery:
+                registries:
+                  service:
+                    disabled: true
+                  kubernetes:
+                    disabled: false
+              network:
+                # Use custom cni
+                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
+                cni:
+                  name: none
+              # Disable kube-proxy
+              # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
+              proxy:
+                disabled: true
+            machine:
+              install:
+                disk: /dev/nvme0n1
+                # https://github.com/siderolabs/talos/pkgs/container/installer
+                image: ghcr.io/siderolabs/installer:v1.7.4
+                extraKernelArgs:
+                  # Setting cpu scaling governor
+                  # https://www.talos.dev/latest/learn-more/knowledge-base/#setting-cpu-scaling-governor
+                  - cpufreq.default_governor=performance
+              kubelet:
+                extraArgs:
+                  # Enable metrics server
+                  # https://www.talos.dev/latest/kubernetes-guides/configuration/deploy-metrics-server/
+                  rotate-server-certificates: true
+                extraMounts:
+                  # Enable local storage
+                  # https://www.talos.dev/latest/kubernetes-guides/configuration/local-storage/
+                  - destination: /var/mnt
+                    type: bind
+                    source: /var/mnt
+                    options:
+                      - bind
+                      - rshared
+                      - rw
+              files:
+                # Expose containerd metrics
+                # https://www.talos.dev/latest/talos-guides/configuration/containerd/#exposing-metrics
+                - content: |
+                    [metrics]
+                      address = "0.0.0.0:11234"
+                  path: /etc/cri/conf.d/20-customization.part
+                  op: create
+              time:
+                servers:
+                  - 0.de.pool.ntp.org
+                  - 1.de.pool.ntp.org
+                  - 2.de.pool.ntp.org
+                  - 3.de.pool.ntp.org
+            ```
+
+        === "Cloudkoffer v1"
+
+            ``` yaml linenums="1"
+            cluster:
+              discovery:
+                registries:
+                  service:
+                    disabled: true
+                  kubernetes:
+                    disabled: false
+              network:
+                # Use custom cni
+                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
+                cni:
+                  name: none
+              # Disable kube-proxy
+              # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
+              proxy:
+                disabled: true
+            machine:
+              install:
+                disk: /dev/sda
+                # https://github.com/siderolabs/talos/pkgs/container/installer
+                image: ghcr.io/siderolabs/installer:v1.7.4
+                extraKernelArgs:
+                  # Setting cpu scaling governor
+                  # https://www.talos.dev/latest/learn-more/knowledge-base/#setting-cpu-scaling-governor
+                  - cpufreq.default_governor=performance
+              kubelet:
+                extraArgs:
+                  # Enable metrics server
+                  # https://www.talos.dev/latest/kubernetes-guides/configuration/deploy-metrics-server/
+                  rotate-server-certificates: true
+                extraMounts:
+                  # Enable local storage
+                  # https://www.talos.dev/latest/kubernetes-guides/configuration/local-storage/
+                  - destination: /var/mnt
+                    type: bind
+                    source: /var/mnt
+                    options:
+                      - bind
+                      - rshared
+                      - rw
+              files:
+                # Expose containerd metrics
+                # https://www.talos.dev/latest/talos-guides/configuration/containerd/#exposing-metrics
+                - content: |
+                    [metrics]
+                      address = "0.0.0.0:11234"
+                  path: /etc/cri/conf.d/20-customization.part
+                  op: create
+              time:
+                servers:
+                  - 0.de.pool.ntp.org
+                  - 1.de.pool.ntp.org
+                  - 2.de.pool.ntp.org
+                  - 3.de.pool.ntp.org
+            ```
+
+    ??? abstract "File: controlplane.yaml"
+
+        === "Cloudkoffer v3"
+
+            ``` yaml linenums="1"
+            cluster:
+              apiServer:
+                certSANs:
+                  - 192.168.1.101
+                  - kube.case.local
+              extraManifests:
+                # Install metrics server
+                # https://www.talos.dev/latest/kubernetes-guides/configuration/deploy-metrics-server/
+                # https://github.com/alex1989hu/kubelet-serving-cert-approver/releases
+                - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.8.4/deploy/standalone-install.yaml
+                # https://github.com/kubernetes-sigs/metrics-server/releases
+                - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.1/components.yaml
+              inlineManifests:
+                # Install cilium cni
+                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#method-5-using-a-job
+                - name: cilium-install
+                  contents: |
+                    ---
+                    apiVersion: rbac.authorization.k8s.io/v1
+                    kind: ClusterRoleBinding
+                    metadata:
+                      name: cilium-install
+                    roleRef:
+                      apiGroup: rbac.authorization.k8s.io
+                      kind: ClusterRole
+                      name: cluster-admin
+                    subjects:
+                    - kind: ServiceAccount
+                      name: cilium-install
+                      namespace: kube-system
+                    ---
+                    apiVersion: v1
+                    kind: ServiceAccount
+                    metadata:
+                      name: cilium-install
+                      namespace: kube-system
+                    ---
+                    apiVersion: batch/v1
+                    kind: Job
+                    metadata:
+                      name: cilium-install
+                      namespace: kube-system
+                    spec:
+                      backoffLimit: 10
+                      template:
+                        metadata:
+                          labels:
+                            app: cilium-install
+                        spec:
+                          restartPolicy: OnFailure
+                          tolerations:
+                            - operator: Exists
+                            - effect: NoSchedule
+                              operator: Exists
+                            - effect: NoExecute
+                              operator: Exists
+                            - effect: PreferNoSchedule
+                              operator: Exists
+                            - key: node-role.kubernetes.io/control-plane
+                              operator: Exists
+                              effect: NoSchedule
+                            - key: node-role.kubernetes.io/control-plane
+                              operator: Exists
+                              effect: NoExecute
+                            - key: node-role.kubernetes.io/control-plane
+                              operator: Exists
+                              effect: PreferNoSchedule
+                          affinity:
+                            nodeAffinity:
+                              requiredDuringSchedulingIgnoredDuringExecution:
+                                nodeSelectorTerms:
+                                  - matchExpressions:
+                                      - key: node-role.kubernetes.io/control-plane
+                                        operator: Exists
+                          serviceAccount: cilium-install
+                          serviceAccountName: cilium-install
+                          hostNetwork: true
+                          containers:
+                          - name: cilium-install
+                            image: quay.io/cilium/cilium-cli-ci:latest
+                            env:
+                            - name: KUBERNETES_SERVICE_HOST
+                              valueFrom:
+                                fieldRef:
+                                  apiVersion: v1
+                                  fieldPath: status.podIP
+                            - name: KUBERNETES_SERVICE_PORT
+                              value: "6443"
+                            command:
+                              - cilium
+                              - install
+                              - --helm-set=ipam.mode=kubernetes
+                              - --set
+                              - kubeProxyReplacement=true
+                              - --helm-set=securityContext.capabilities.ciliumAgent={CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}
+                              - --helm-set=securityContext.capabilities.cleanCiliumState={NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}
+                              - --helm-set=cgroup.autoMount.enabled=false
+                              - --helm-set=cgroup.hostRoot=/sys/fs/cgroup
+                              - --helm-set=k8sServiceHost=localhost
+                              - --helm-set=k8sServicePort=7445
+                              - --helm-set=hubble.relay.enabled=true
+                              - --helm-set=hubble.ui.enabled=true
+                              - --helm-set=hubble.ui.ingress.enabled=true
+                              - --helm-set=hubble.ui.ingress.className=true
+                              - --helm-set=hubble.ui.ingress.hosts={hubble.ck3.cluster.qaware.de}
+            machine:
+              network:
+                interfaces:
+                  - interface: eth0
+                    mtu: 1500
+                    dhcp: true
+                    # Configure virtual (shared) ip
+                    # https://www.talos.dev/latest/talos-guides/network/vip/
+                    vip:
+                      ip: 192.168.1.101
+            ```
+
+        === "Cloudkoffer v2"
+
+            ``` yaml linenums="1"
+            cluster:
+              apiServer:
+                certSANs:
+                  - 192.168.1.101
+                  - kube.case.local
+              extraManifests:
+                # Install metrics server
+                # https://www.talos.dev/latest/kubernetes-guides/configuration/deploy-metrics-server/
+                # https://github.com/alex1989hu/kubelet-serving-cert-approver/releases
+                - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.8.4/deploy/standalone-install.yaml
+                # https://github.com/kubernetes-sigs/metrics-server/releases
+                - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.1/components.yaml
+              inlineManifests:
+                # Install cilium cni
+                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#method-5-using-a-job
+                - name: cilium-install
+                  contents: |
+                    ---
+                    apiVersion: rbac.authorization.k8s.io/v1
+                    kind: ClusterRoleBinding
+                    metadata:
+                      name: cilium-install
+                    roleRef:
+                      apiGroup: rbac.authorization.k8s.io
+                      kind: ClusterRole
+                      name: cluster-admin
+                    subjects:
+                    - kind: ServiceAccount
+                      name: cilium-install
+                      namespace: kube-system
+                    ---
+                    apiVersion: v1
+                    kind: ServiceAccount
+                    metadata:
+                      name: cilium-install
+                      namespace: kube-system
+                    ---
+                    apiVersion: batch/v1
+                    kind: Job
+                    metadata:
+                      name: cilium-install
+                      namespace: kube-system
+                    spec:
+                      backoffLimit: 10
+                      template:
+                        metadata:
+                          labels:
+                            app: cilium-install
+                        spec:
+                          restartPolicy: OnFailure
+                          tolerations:
+                            - operator: Exists
+                            - effect: NoSchedule
+                              operator: Exists
+                            - effect: NoExecute
+                              operator: Exists
+                            - effect: PreferNoSchedule
+                              operator: Exists
+                            - key: node-role.kubernetes.io/control-plane
+                              operator: Exists
+                              effect: NoSchedule
+                            - key: node-role.kubernetes.io/control-plane
+                              operator: Exists
+                              effect: NoExecute
+                            - key: node-role.kubernetes.io/control-plane
+                              operator: Exists
+                              effect: PreferNoSchedule
+                          affinity:
+                            nodeAffinity:
+                              requiredDuringSchedulingIgnoredDuringExecution:
+                                nodeSelectorTerms:
+                                  - matchExpressions:
+                                      - key: node-role.kubernetes.io/control-plane
+                                        operator: Exists
+                          serviceAccount: cilium-install
+                          serviceAccountName: cilium-install
+                          hostNetwork: true
+                          containers:
+                          - name: cilium-install
+                            image: quay.io/cilium/cilium-cli-ci:latest
+                            env:
+                            - name: KUBERNETES_SERVICE_HOST
+                              valueFrom:
+                                fieldRef:
+                                  apiVersion: v1
+                                  fieldPath: status.podIP
+                            - name: KUBERNETES_SERVICE_PORT
+                              value: "6443"
+                            command:
+                              - cilium
+                              - install
+                              - --helm-set=ipam.mode=kubernetes
+                              - --set
+                              - kubeProxyReplacement=true
+                              - --helm-set=securityContext.capabilities.ciliumAgent={CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}
+                              - --helm-set=securityContext.capabilities.cleanCiliumState={NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}
+                              - --helm-set=cgroup.autoMount.enabled=false
+                              - --helm-set=cgroup.hostRoot=/sys/fs/cgroup
+                              - --helm-set=k8sServiceHost=localhost
+                              - --helm-set=k8sServicePort=7445
+                              - --helm-set=hubble.relay.enabled=true
+                              - --helm-set=hubble.ui.enabled=true
+                              - --helm-set=hubble.ui.ingress.enabled=true
+                              - --helm-set=hubble.ui.ingress.className=true
+                              - --helm-set=hubble.ui.ingress.hosts={hubble.ck2.cluster.qaware.de}
+            machine:
+              network:
+                interfaces:
+                  - interface: eth0
+                    mtu: 1500
+                    dhcp: true
+                    # Configure virtual (shared) ip
+                    # https://www.talos.dev/latest/talos-guides/network/vip/
+                    vip:
+                      ip: 192.168.1.101
+            ```
+
+        === "Cloudkoffer v1"
+
+            ``` yaml linenums="1"
+            cluster:
+              apiServer:
+                certSANs:
+                  - 192.168.1.101
+                  - kube.case.local
+              extraManifests:
+                # Install metrics server
+                # https://www.talos.dev/latest/kubernetes-guides/configuration/deploy-metrics-server/
+                # https://github.com/alex1989hu/kubelet-serving-cert-approver/releases
+                - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.8.4/deploy/standalone-install.yaml
+                # https://github.com/kubernetes-sigs/metrics-server/releases
+                - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.1/components.yaml
+              inlineManifests:
+                # Install cilium cni
+                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#method-5-using-a-job
+                - name: cilium-install
+                  contents: |
+                    ---
+                    apiVersion: rbac.authorization.k8s.io/v1
+                    kind: ClusterRoleBinding
+                    metadata:
+                      name: cilium-install
+                    roleRef:
+                      apiGroup: rbac.authorization.k8s.io
+                      kind: ClusterRole
+                      name: cluster-admin
+                    subjects:
+                    - kind: ServiceAccount
+                      name: cilium-install
+                      namespace: kube-system
+                    ---
+                    apiVersion: v1
+                    kind: ServiceAccount
+                    metadata:
+                      name: cilium-install
+                      namespace: kube-system
+                    ---
+                    apiVersion: batch/v1
+                    kind: Job
+                    metadata:
+                      name: cilium-install
+                      namespace: kube-system
+                    spec:
+                      backoffLimit: 10
+                      template:
+                        metadata:
+                          labels:
+                            app: cilium-install
+                        spec:
+                          restartPolicy: OnFailure
+                          tolerations:
+                            - operator: Exists
+                            - effect: NoSchedule
+                              operator: Exists
+                            - effect: NoExecute
+                              operator: Exists
+                            - effect: PreferNoSchedule
+                              operator: Exists
+                            - key: node-role.kubernetes.io/control-plane
+                              operator: Exists
+                              effect: NoSchedule
+                            - key: node-role.kubernetes.io/control-plane
+                              operator: Exists
+                              effect: NoExecute
+                            - key: node-role.kubernetes.io/control-plane
+                              operator: Exists
+                              effect: PreferNoSchedule
+                          affinity:
+                            nodeAffinity:
+                              requiredDuringSchedulingIgnoredDuringExecution:
+                                nodeSelectorTerms:
+                                  - matchExpressions:
+                                      - key: node-role.kubernetes.io/control-plane
+                                        operator: Exists
+                          serviceAccount: cilium-install
+                          serviceAccountName: cilium-install
+                          hostNetwork: true
+                          containers:
+                          - name: cilium-install
+                            image: quay.io/cilium/cilium-cli-ci:latest
+                            env:
+                            - name: KUBERNETES_SERVICE_HOST
+                              valueFrom:
+                                fieldRef:
+                                  apiVersion: v1
+                                  fieldPath: status.podIP
+                            - name: KUBERNETES_SERVICE_PORT
+                              value: "6443"
+                            command:
+                              - cilium
+                              - install
+                              - --helm-set=ipam.mode=kubernetes
+                              - --set
+                              - kubeProxyReplacement=true
+                              - --helm-set=securityContext.capabilities.ciliumAgent={CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}
+                              - --helm-set=securityContext.capabilities.cleanCiliumState={NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}
+                              - --helm-set=cgroup.autoMount.enabled=false
+                              - --helm-set=cgroup.hostRoot=/sys/fs/cgroup
+                              - --helm-set=k8sServiceHost=localhost
+                              - --helm-set=k8sServicePort=7445
+                              - --helm-set=hubble.relay.enabled=true
+                              - --helm-set=hubble.ui.enabled=true
+                              - --helm-set=hubble.ui.ingress.enabled=true
+                              - --helm-set=hubble.ui.ingress.className=true
+                              - --helm-set=hubble.ui.ingress.hosts={hubble.ck1.cluster.qaware.de}
+            machine:
+              network:
+                interfaces:
+                  - interface: eth0
+                    mtu: 1500
+                    dhcp: true
+                    # Configure virtual (shared) ip
+                    # https://www.talos.dev/latest/talos-guides/network/vip/
+                    vip:
+                      ip: 192.168.1.101
+            ```
+
 - Create talos client and machine configuration.
 
     === "CLI"
@@ -162,7 +705,6 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         talosctl gen config "${CLUSTER_NAME}" https://192.168.1.101:6443 \
           --config-patch="@../patches/${CLUSTER_NAME}/all.yaml" \
           --config-patch-control-plane="@../patches/${CLUSTER_NAME}/controlplane.yaml" \
-          --config-patch-worker="@../patches/${CLUSTER_NAME}/worker.yaml" \
           --install-disk=/dev/nvme0n1 \
           --install-image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
           --kubernetes-version="${KUBERNETES_VERSION}" \
@@ -417,7 +959,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 - Upgrade Kubernetes.
 
     ``` shell title="Shell"
-    KUBERNETES_VERSION="1.30.0"
+    KUBERNETES_VERSION="1.30.1"
 
     talosctl upgrade-k8s \
       --to="${KUBERNETES_VERSION}"

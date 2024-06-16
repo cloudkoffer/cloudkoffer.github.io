@@ -49,7 +49,7 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
             # https://github.com/clementblaise/terraform-provider-age/blob/main/CHANGELOG.md
             age = {
               source  = "clementblaise/age"
-              version = "~> 0.1.1"
+              version = "0.1.1"
             }
             # https://github.com/hashicorp/terraform-provider-kubernetes/blob/main/CHANGELOG.md
             kubernetes = {
@@ -207,8 +207,7 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
         ``` terraform title="File: main.tf" linenums="1"
         resource "flux_bootstrap_git" "this" {
           path           = "clusters/${var.cluster_name}"
-          interval       = "1m0s"
-          version        = "v2.2.3" # https://github.com/fluxcd/flux2/releases
+          version        = "v2.3.0" # https://github.com/fluxcd/flux2/releases
           log_level      = "info"   # debug, info, error
           network_policy = false
 
