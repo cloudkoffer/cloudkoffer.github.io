@@ -30,57 +30,154 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     === "CLI"
 
-        ``` shell title="Shell"
-        CLUSTER_NAME="talos-cloudkoffer-v3"
-        CLUSTER_ENDPOINT="https://192.168.1.101:6443"
-        TALOS_VERSION="v1.7.4"
-        KUBERNETES_VERSION="1.30.1"
-        NODES_CONTROLPLANE=(
-          "192.168.1.1"
-          "192.168.1.2"
-          "192.168.1.3"
-        )
-        NODES_WORKER=(
-          "192.168.1.4"
-          "192.168.1.5"
-          "192.168.1.6"
-          "192.168.1.7"
-          "192.168.1.8"
-          "192.168.1.9"
-          "192.168.1.10"
-        )
-        ```
+        === "Cloudkoffer v3"
+
+            ``` shell title="Shell"
+            CLUSTER_NAME="talos-cloudkoffer-v3"
+            CLUSTER_ENDPOINT="https://192.168.1.101:6443"
+            TALOS_VERSION="v1.7.4"
+            KUBERNETES_VERSION="1.30.1"
+            NODES_CONTROLPLANE=(
+              "192.168.1.1"
+              "192.168.1.2"
+              "192.168.1.3"
+            )
+            NODES_WORKER=(
+              "192.168.1.4"
+              "192.168.1.5"
+              "192.168.1.6"
+              "192.168.1.7"
+              "192.168.1.8"
+              "192.168.1.9"
+              "192.168.1.10"
+            )
+            ```
+
+        === "Cloudkoffer v2"
+
+            ``` shell title="Shell"
+            CLUSTER_NAME="talos-cloudkoffer-v2"
+            CLUSTER_ENDPOINT="https://192.168.1.101:6443"
+            TALOS_VERSION="v1.7.4"
+            KUBERNETES_VERSION="1.30.1"
+            NODES_CONTROLPLANE=(
+              "192.168.1.1"
+              "192.168.1.2"
+              "192.168.1.3"
+            )
+            NODES_WORKER=(
+              "192.168.1.4"
+              "192.168.1.5"
+              "192.168.1.6"
+              "192.168.1.7"
+              "192.168.1.8"
+              "192.168.1.9"
+              "192.168.1.10"
+            )
+            ```
+
+        === "Cloudkoffer v1"
+
+            ``` shell title="Shell"
+            CLUSTER_NAME="talos-cloudkoffer-v1"
+            CLUSTER_ENDPOINT="https://192.168.1.101:6443"
+            TALOS_VERSION="v1.7.4"
+            KUBERNETES_VERSION="1.30.1"
+            NODES_CONTROLPLANE=(
+              "192.168.1.1"
+              "192.168.1.2"
+              "192.168.1.3"
+            )
+            NODES_WORKER=(
+              "192.168.1.4"
+              "192.168.1.5"
+            )
+            ```
 
     === "Terraform"
 
-        ``` shell title="Shell"
-        TF_VAR_cluster_name="talos-cloudkoffer-v3"
-        TF_VAR_cluster_endpoint="https://192.168.1.101:6443"
-        TF_VAR_talos_version="1.7.4"
-        TF_VAR_kubernetes_version="1.30.1"
-        TF_VAR_nodes='{
-          "controlplane"=[
-            "192.168.1.1",
-            "192.168.1.2",
-            "192.168.1.3"
-          ],
-          "worker"=[
-            "192.168.1.4",
-            "192.168.1.5",
-            "192.168.1.6",
-            "192.168.1.7",
-            "192.168.1.8",
-            "192.168.1.9",
-            "192.168.1.10"
-          ]
-        }'
-        ```
+        === "Cloudkoffer v3"
+
+            ``` shell title="Shell"
+            TF_VAR_cluster_name="talos-cloudkoffer-v3"
+            TF_VAR_cluster_endpoint="https://192.168.1.101:6443"
+            TF_VAR_talos_version="1.7.4"
+            TF_VAR_kubernetes_version="1.30.1"
+            TF_VAR_nodes='{
+              "controlplane"=[
+                "192.168.1.1",
+                "192.168.1.2",
+                "192.168.1.3"
+              ],
+              "worker"=[
+                "192.168.1.4",
+                "192.168.1.5",
+                "192.168.1.6",
+                "192.168.1.7",
+                "192.168.1.8",
+                "192.168.1.9",
+                "192.168.1.10"
+              ]
+            }'
+            ```
+
+        === "Cloudkoffer v2"
+
+            ``` shell title="Shell"
+            TF_VAR_cluster_name="talos-cloudkoffer-v2"
+            TF_VAR_cluster_endpoint="https://192.168.1.101:6443"
+            TF_VAR_talos_version="1.7.4"
+            TF_VAR_kubernetes_version="1.30.1"
+            TF_VAR_nodes='{
+              "controlplane"=[
+                "192.168.1.1",
+                "192.168.1.2",
+                "192.168.1.3"
+              ],
+              "worker"=[
+                "192.168.1.4",
+                "192.168.1.5",
+                "192.168.1.6",
+                "192.168.1.7",
+                "192.168.1.8",
+                "192.168.1.9",
+                "192.168.1.10"
+              ]
+            }'
+            ```
+
+        === "Cloudkoffer v1"
+
+            ``` shell title="Shell"
+            TF_VAR_cluster_name="talos-cloudkoffer-v1"
+            TF_VAR_cluster_endpoint="https://192.168.1.101:6443"
+            TF_VAR_talos_version="1.7.4"
+            TF_VAR_kubernetes_version="1.30.1"
+            TF_VAR_nodes='{
+              "controlplane"=[
+                "192.168.1.1",
+                "192.168.1.2",
+                "192.168.1.3"
+              ],
+              "worker"=[
+                "192.168.1.4",
+                "192.168.1.5",
+                "192.168.1.6",
+                "192.168.1.7",
+                "192.168.1.8"
+              ]
+            }'
+            ```
 
 - Install and configure [talosctl](https://www.talos.dev/v1.7/introduction/getting-started/#talosctl).
 
     === "CLI"
 
-        - <https://www.talos.dev/v1.7/introduction/getting-started/#talosctl>
+        - <https://www.talos.dev/latest/talos-guides/install/talosctl/>
+
+        ``` shell title="Shell"
+        curl -sL https://talos.dev/install | sh
+        ```
 
     === "Terraform"
 
@@ -98,13 +195,16 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         provider "talos" {}
         ```
 
-        ``` shell title="Shell"
-        curl -sL https://talos.dev/install | sh
-        ```
-
 - Boot the nodes using either USB sticks or a network boot (F12).
 
 - Wait until the nodes have entered maintenance mode.
+
+    !!! info "Note for the Terraform workflow"
+
+        * The `talosctl` CLI is required to carry out the following step.
+          The installation steps can be found in the **CLI** tab of the **Install and configure talosctl** step.
+
+        * The environment variables from the **CLI** tab of the **Configure environment variables** step are also required.
 
     ``` shell title="Shell"
     for node in "${NODES_CONTROLPLANE[@]}"; do
@@ -803,8 +903,17 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
         ``` shell title="Shell"
         terraform apply
-
         terraform output -raw talosconfig > talosconfig
+        ```
+
+        !!! info
+
+            * The `talosctl` CLI is required to carry out the following step.
+              The installation steps can be found in the **CLI** tab of the **Install and configure talosctl** step.
+
+            * The environment variables from the **CLI** tab of the **Configure environment variables** step are also required.
+
+        ``` shell title="Shell"
         talosctl config merge talosconfig
         talosctl config use-context "${CLUSTER_NAME}"
         ```
@@ -901,6 +1010,11 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         ```
 
 - Wait until cluster is healthy.
+
+    !!! info "Note for the Terraform workflow"
+
+        * The `talosctl` CLI is required to carry out the following step.
+          The installation steps can be found in the **CLI** tab of the **Install and configure talosctl** step.
 
     ``` shell title="Shell"
     talosctl health
