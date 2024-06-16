@@ -233,7 +233,7 @@ Node 5 | f4:4d:30:60:70:62
               - Secure Boot Config
                   - Securte Boot > `unchecked`
 
-## Peripheral devices
+## Peripheral Devices
 
 ### Monitor
 
@@ -250,8 +250,6 @@ Node 5 | f4:4d:30:60:70:62
 </figure>
 
 </div>
-
-
 
 * Panel Type: 15.6" TFT IPS LCD (16:9 Wide) LED Backlight
 * Resolution: 1920 x 1080 (60Hz/60Hz)

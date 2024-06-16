@@ -235,3 +235,9 @@ Node 10 | 00:1f:c6:9c:91:e6
           - Secure Boot
               - Secure Boot Config
                   - Securte Boot > `unchecked`
+
+## Peripheral Devices
+
+### Monitor
+
+### Keyboard and Mouse
