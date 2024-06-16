@@ -124,14 +124,6 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
 
     === "Terraform"
 
-        ``` terraform title="File: variables.tf" linenums="1"
-        variable "cluster_name" {
-          description = "The name for the Talos cluster."
-          type        = string
-          nullable    = false
-        }
-        ```
-
         ``` terraform title="File: main.tf" linenums="1"
         resource "local_file" "this" {
           filename = "sops.yaml"
