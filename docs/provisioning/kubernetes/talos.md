@@ -799,12 +799,9 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
           --with-examples=false \
           --with-secrets=secrets.yaml
 
-        talosctl config endpoint 192.168.1.1 192.168.1.2 192.168.1.3 \
-          --talosconfig=talosconfig
-        talosctl config node 192.168.1.1 \
-          --talosconfig=talosconfig
-        talosctl config merge talosconfig
-        talosctl config use-context "${CLUSTER_NAME}"
+        export TALOSCONFIG="$(pwd)/talosconfig"
+        talosctl config endpoint 192.168.1.1 192.168.1.2 192.168.1.3
+        talosctl config node 192.168.1.1
         ```
 
     === "Terraform"
@@ -1015,6 +1012,11 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         ```
 
 ## Maintenance Steps
+
+``` shell title="Shell"
+export TALOSCONFIG="$(pwd)/talosconfig"
+export KUBECONFIG="$(pwd)/kubeconfig"
+```
 
 - Upgrade Talos.
 
