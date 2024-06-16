@@ -33,64 +33,64 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         === "Cloudkoffer v3"
 
             ``` shell title="Shell"
-            CLUSTER_NAME="talos-cloudkoffer-v3"
-            CLUSTER_ENDPOINT="https://192.168.1.101:6443"
-            TALOS_VERSION="v1.7.4"
-            KUBERNETES_VERSION="1.30.1"
+            CLUSTER_NAME=talos-cloudkoffer-v3
+            CLUSTER_ENDPOINT=https://192.168.1.101:6443
+            TALOS_VERSION=v1.7.4
+            KUBERNETES_VERSION=1.30.1
             NODES_CONTROLPLANE=(
-              "192.168.1.1"
-              "192.168.1.2"
-              "192.168.1.3"
+              192.168.1.1
+              192.168.1.2
+              192.168.1.3
             )
             NODES_WORKER=(
-              "192.168.1.4"
-              "192.168.1.5"
-              "192.168.1.6"
-              "192.168.1.7"
-              "192.168.1.8"
-              "192.168.1.9"
-              "192.168.1.10"
+              192.168.1.4
+              192.168.1.5
+              192.168.1.6
+              192.168.1.7
+              192.168.1.8
+              192.168.1.9
+              192.168.1.10
             )
             ```
 
         === "Cloudkoffer v2"
 
             ``` shell title="Shell"
-            CLUSTER_NAME="talos-cloudkoffer-v2"
-            CLUSTER_ENDPOINT="https://192.168.1.101:6443"
-            TALOS_VERSION="v1.7.4"
-            KUBERNETES_VERSION="1.30.1"
+            CLUSTER_NAME=talos-cloudkoffer-v2
+            CLUSTER_ENDPOINT=https://192.168.1.101:6443
+            TALOS_VERSION=v1.7.4
+            KUBERNETES_VERSION=1.30.1
             NODES_CONTROLPLANE=(
-              "192.168.1.1"
-              "192.168.1.2"
-              "192.168.1.3"
+              192.168.1.1
+              192.168.1.2
+              192.168.1.3
             )
             NODES_WORKER=(
-              "192.168.1.4"
-              "192.168.1.5"
-              "192.168.1.6"
-              "192.168.1.7"
-              "192.168.1.8"
-              "192.168.1.9"
-              "192.168.1.10"
+              192.168.1.4
+              192.168.1.5
+              192.168.1.6
+              192.168.1.7
+              192.168.1.8
+              192.168.1.9
+              192.168.1.10
             )
             ```
 
         === "Cloudkoffer v1"
 
             ``` shell title="Shell"
-            CLUSTER_NAME="talos-cloudkoffer-v1"
-            CLUSTER_ENDPOINT="https://192.168.1.101:6443"
-            TALOS_VERSION="v1.7.4"
-            KUBERNETES_VERSION="1.30.1"
+            CLUSTER_NAME=talos-cloudkoffer-v1
+            CLUSTER_ENDPOINT=https://192.168.1.101:6443
+            TALOS_VERSION=v1.7.4
+            KUBERNETES_VERSION=1.30.1
             NODES_CONTROLPLANE=(
-              "192.168.1.1"
-              "192.168.1.2"
-              "192.168.1.3"
+              192.168.1.1
+              192.168.1.2
+              192.168.1.3
             )
             NODES_WORKER=(
-              "192.168.1.4"
-              "192.168.1.5"
+              192.168.1.4
+              192.168.1.5
             )
             ```
 
@@ -99,10 +99,10 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         === "Cloudkoffer v3"
 
             ``` shell title="Shell"
-            TF_VAR_cluster_name="talos-cloudkoffer-v3"
-            TF_VAR_cluster_endpoint="https://192.168.1.101:6443"
-            TF_VAR_talos_version="1.7.4"
-            TF_VAR_kubernetes_version="1.30.1"
+            TF_VAR_cluster_name=talos-cloudkoffer-v3
+            TF_VAR_cluster_endpoint=https://192.168.1.101:6443
+            TF_VAR_talos_version=1.7.4
+            TF_VAR_kubernetes_version=1.30.1
             TF_VAR_nodes='{
               "controlplane"=[
                 "192.168.1.1",
@@ -124,10 +124,10 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         === "Cloudkoffer v2"
 
             ``` shell title="Shell"
-            TF_VAR_cluster_name="talos-cloudkoffer-v2"
-            TF_VAR_cluster_endpoint="https://192.168.1.101:6443"
-            TF_VAR_talos_version="1.7.4"
-            TF_VAR_kubernetes_version="1.30.1"
+            TF_VAR_cluster_name=talos-cloudkoffer-v2
+            TF_VAR_cluster_endpoint=https://192.168.1.101:6443
+            TF_VAR_talos_version=1.7.4
+            TF_VAR_kubernetes_version=1.30.1
             TF_VAR_nodes='{
               "controlplane"=[
                 "192.168.1.1",
@@ -149,10 +149,10 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         === "Cloudkoffer v1"
 
             ``` shell title="Shell"
-            TF_VAR_cluster_name="talos-cloudkoffer-v1"
-            TF_VAR_cluster_endpoint="https://192.168.1.101:6443"
-            TF_VAR_talos_version="1.7.4"
-            TF_VAR_kubernetes_version="1.30.1"
+            TF_VAR_cluster_name=talos-cloudkoffer-v1
+            TF_VAR_cluster_endpoint=https://192.168.1.101:6443
+            TF_VAR_talos_version=1.7.4
+            TF_VAR_kubernetes_version=1.30.1
             TF_VAR_nodes='{
               "controlplane"=[
                 "192.168.1.1",
@@ -230,8 +230,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
         ``` shell title="Shell"
         talosctl gen secrets \
-          --output-file=secrets.yaml \
-          --talos-version="${TALOS_VERSION}"
+          --output-file=secrets.yaml
         ```
 
     === "Terraform"
@@ -269,19 +268,17 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
                   kubernetes:
                     disabled: false
               network:
-                # Use custom cni
-                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
                 cni:
+                  # Use custom cni
+                  # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
                   name: none
-              # Disable kube-proxy
-              # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
               proxy:
+                # Disable kube-proxy
+                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
                 disabled: true
             machine:
               install:
                 disk: /dev/nvme0n1
-                # https://github.com/siderolabs/talos/pkgs/container/installer
-                image: ghcr.io/siderolabs/installer:v1.7.4
                 extraKernelArgs:
                   # Setting cpu scaling governor
                   # https://www.talos.dev/latest/learn-more/knowledge-base/#setting-cpu-scaling-governor
@@ -309,12 +306,6 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
                       address = "0.0.0.0:11234"
                   path: /etc/cri/conf.d/20-customization.part
                   op: create
-              time:
-                servers:
-                  - 0.de.pool.ntp.org
-                  - 1.de.pool.ntp.org
-                  - 2.de.pool.ntp.org
-                  - 3.de.pool.ntp.org
             ```
 
         === "Cloudkoffer v2"
@@ -328,19 +319,17 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
                   kubernetes:
                     disabled: false
               network:
-                # Use custom cni
-                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
                 cni:
+                  # Use custom cni
+                  # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
                   name: none
-              # Disable kube-proxy
-              # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
               proxy:
+                # Disable kube-proxy
+                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
                 disabled: true
             machine:
               install:
                 disk: /dev/nvme0n1
-                # https://github.com/siderolabs/talos/pkgs/container/installer
-                image: ghcr.io/siderolabs/installer:v1.7.4
                 extraKernelArgs:
                   # Setting cpu scaling governor
                   # https://www.talos.dev/latest/learn-more/knowledge-base/#setting-cpu-scaling-governor
@@ -368,12 +357,6 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
                       address = "0.0.0.0:11234"
                   path: /etc/cri/conf.d/20-customization.part
                   op: create
-              time:
-                servers:
-                  - 0.de.pool.ntp.org
-                  - 1.de.pool.ntp.org
-                  - 2.de.pool.ntp.org
-                  - 3.de.pool.ntp.org
             ```
 
         === "Cloudkoffer v1"
@@ -387,19 +370,17 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
                   kubernetes:
                     disabled: false
               network:
-                # Use custom cni
-                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
                 cni:
+                  # Use custom cni
+                  # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
                   name: none
-              # Disable kube-proxy
-              # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
               proxy:
+                # Disable kube-proxy
+                # https://www.talos.dev/latest/kubernetes-guides/network/deploying-cilium/#machine-config-preparation
                 disabled: true
             machine:
               install:
                 disk: /dev/sda
-                # https://github.com/siderolabs/talos/pkgs/container/installer
-                image: ghcr.io/siderolabs/installer:v1.7.4
                 extraKernelArgs:
                   # Setting cpu scaling governor
                   # https://www.talos.dev/latest/learn-more/knowledge-base/#setting-cpu-scaling-governor
@@ -427,12 +408,6 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
                       address = "0.0.0.0:11234"
                   path: /etc/cri/conf.d/20-customization.part
                   op: create
-              time:
-                servers:
-                  - 0.de.pool.ntp.org
-                  - 1.de.pool.ntp.org
-                  - 2.de.pool.ntp.org
-                  - 3.de.pool.ntp.org
             ```
 
     ??? abstract "File: controlplane.yaml"
@@ -805,10 +780,8 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         talosctl gen config "${CLUSTER_NAME}" https://192.168.1.101:6443 \
           --config-patch="@../patches/${CLUSTER_NAME}/all.yaml" \
           --config-patch-control-plane="@../patches/${CLUSTER_NAME}/controlplane.yaml" \
-          --install-disk=/dev/nvme0n1 \
           --install-image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
           --kubernetes-version="${KUBERNETES_VERSION}" \
-          --talos-version="${TALOS_VERSION}"
           --with-docs=false \
           --with-examples=false \
           --with-secrets=secrets.yaml
@@ -1044,11 +1017,11 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         Perform the upgrade one by one for each node.
 
     ``` shell title="Shell"
-    TALOS_VERSION="v1.7.4"
+    TALOS_VERSION=v1.7.4
 
     talosctl upgrade \
       --image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
-      --nodes 192.168.1.x
+      --nodes=192.168.1.x
     ```
 
 - Stage-Upgrade Talos.
@@ -1058,22 +1031,22 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         Use if the above upgrade fails due to a process holding a file open on disk.
 
     ``` shell title="Shell"
-    TALOS_VERSION="v1.7.4"
+    TALOS_VERSION=v1.7.4
 
     talosctl upgrade \
       --image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
-      --stage \
-      --nodes 192.168.1.x
+      --nodes=192.168.1.x \
+      --stage
 
     talosctl reboot \
-      --wait \
-      --nodes 192.168.1.x
+      --nodes=192.168.1.x \
+      --wait
     ```
 
 - Upgrade Kubernetes.
 
     ``` shell title="Shell"
-    KUBERNETES_VERSION="1.30.1"
+    KUBERNETES_VERSION=1.30.1
 
     talosctl upgrade-k8s \
       --to="${KUBERNETES_VERSION}"

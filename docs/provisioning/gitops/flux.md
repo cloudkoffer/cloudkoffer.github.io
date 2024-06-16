@@ -21,8 +21,8 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
 - Configure environment variables.
 
     ``` shell title="Shell"
-    CLUSTER_NAME="talos-cloudkoffer-v3"
-    export GITHUB_TOKEN="<github-token>"
+    CLUSTER_NAME=talos-cloudkoffer-v3
+    export GITHUB_TOKEN=<github-token>
     ```
 
 - Install and configure [age](https://github.com/FiloSottile/age), [kubectl](https://kubernetes.io/docs/tasks/tools/) and [flux](https://fluxcd.io/flux/cmd/).

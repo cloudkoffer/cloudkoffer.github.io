@@ -143,7 +143,7 @@ It is then possible to apply it via the web UI.
 - Download the latest talos linux image.
 
     ``` shell
-    TALOS_VERSION="v1.7.4"
+    TALOS_VERSION=v1.7.4
     BASE_URL="https://github.com/siderolabs/talos/releases/download/${TALOS_VERSION}"
     sudo curl -sL "${BASE_URL}/initramfs-amd64.xz" -o /var/lib/tftpboot/initramfs-amd64.xz
     sudo curl -sL "${BASE_URL}/vmlinuz-amd64" -o /var/lib/tftpboot/vmlinuz-amd64
@@ -306,7 +306,7 @@ It is then possible to apply it via the web UI.
     ```
 
     ``` shell
-    TALOS_VERSION="v1.7.4"
+    TALOS_VERSION=v1.7.4
     BASE_URL="https://github.com/siderolabs/talos/releases/download/${TALOS_VERSION}"
     sudo curl -sL "${BASE_URL}/initramfs-amd64.xz" -o /var/lib/tftpboot/initramfs-amd64.xz
     sudo curl -sL "${BASE_URL}/vmlinuz-amd64" -o /var/lib/tftpboot/vmlinuz-amd64
