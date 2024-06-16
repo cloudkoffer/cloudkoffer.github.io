@@ -134,13 +134,13 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
 
         ``` terraform title="File: main.tf" linenums="1"
         resource "local_file" "this" {
-          content = <<-EOT
+          filename = "sops.yaml"
+          content  = <<-EOT
           creation_rules:
             - path_regex: .*.yaml
               encrypted_regex: ^(data|stringData)$
               age: ${age_secret_key.this.public_key}
           EOT
-          filename = "sops.yaml"
         }
         ```
 
