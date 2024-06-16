@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD033 -->
 # Cloudkoffer v1
 
 <div class="grid" markdown>
@@ -30,6 +31,19 @@
 </div>
 
 ## Case
+
+<figure markdown="span">
+  ![Aktenkoffer Alumaxx 45188 Mercato](img/case-v1.jpg "Aktenkoffer Alumaxx 45188 Mercato")
+  <figcaption>Aktenkoffer Alumaxx 45188 Mercato</figcaption>
+</figure>
+
+* Material: aluminum
+* Color: silver
+* Dimensions: 45.5 x 34 x 11 cm (W x H x D)
+* Weight: 2.2 kg
+* 3-digit combination locks
+* Ergonomic carrying handle
+* Detachable and adjustable carrying strap
 
 ## Router
 
@@ -218,3 +232,49 @@ Node 5 | f4:4d:30:60:70:62
           - Secure Boot
               - Secure Boot Config
                   - Securte Boot > `unchecked`
+
+## Peripheral devices
+
+### Monitor
+
+<div class="grid" markdown>
+
+<figure markdown="span">
+  ![GeChic On-Lap 2501H - Front view](img/monitor-v1-1.jpg "GeChic On-Lap 2501H - Front view")
+  <figcaption>GeChic On-Lap 2501H - Front view</figcaption>
+</figure>
+
+<figure markdown="span">
+  ![GeChic On-Lap 2501H - Side view](img/monitor-v1-2.jpg "GeChic On-Lap 2501H - Side view")
+  <figcaption>GeChic On-Lap 2501H - Side view</figcaption>
+</figure>
+
+</div>
+
+
+
+* Panel Type: 15.6" TFT IPS LCD (16:9 Wide) LED Backlight
+* Resolution: 1920 x 1080 (60Hz/60Hz)
+* Color Depth: 262K colors
+* Connectivity: Micro-HDMI, VGA, Headphone out
+* Weight: 780g
+* Surface Treatment: Anti-glare
+* Active Area: 344.2 x 193.5 mm (W x H)
+* Pixel Pitch: 0.179 x 0.179 mm (H x V)
+* Viewing Angle: 80° / 80° / 80° / 80° (U/D/L/R)
+* Contrast Ratio: 400:1
+* Brightness: 250 cd/m2
+* Response Time: 17.5 ms
+* Dimensions: 395 x 260 x 16.33 mm (W x H x D)
+
+### Keyboard and Mouse
+
+<figure markdown="span">
+  ![Logitech K400 Wireless Touch Keyboard](img/keyboard-K400.jpg "Logitech K400 Wireless Touch Keyboard")
+  <figcaption>Logitech K400 Wireless Touch Keyboard</figcaption>
+</figure>
+
+* Dimensions: 13.59 x 35.31 x 2.39 cm
+* Weight: 360.04 g
+* Batteries: 1x AAA
+* Built-In Multi-Touch Touchpad

@@ -3,6 +3,7 @@ hide:
   - navigation
 ---
 
+<!-- markdownlint-disable MD033 -->
 # Cloudkoffer
 
 !!! example "Work in Progress"

@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD046 -->
 # Talos
 
 ## Description
@@ -32,8 +33,8 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         ``` shell title="Shell"
         CLUSTER_NAME="talos-cloudkoffer-v3"
         CLUSTER_ENDPOINT="https://192.168.1.101:6443"
-        TALOS_VERSION="v1.7.0"
-        KUBERNETES_VERSION="1.30.0"
+        TALOS_VERSION="v1.7.4"
+        KUBERNETES_VERSION="1.30.1"
         NODES_CONTROLPLANE=(
           "192.168.1.1"
           "192.168.1.2"
@@ -55,8 +56,8 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         ``` shell title="Shell"
         TF_VAR_cluster_name="talos-cloudkoffer-v3"
         TF_VAR_cluster_endpoint="https://192.168.1.101:6443"
-        TF_VAR_talos_version="1.7.0"
-        TF_VAR_kubernetes_version="1.30.0"
+        TF_VAR_talos_version="1.7.4"
+        TF_VAR_kubernetes_version="1.30.1"
         TF_VAR_nodes='{
           "controlplane"=[
             "192.168.1.1",
@@ -387,7 +388,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         Perform the upgrade one by one for each node.
 
     ``` shell title="Shell"
-    TALOS_VERSION="v1.7.0"
+    TALOS_VERSION="v1.7.4"
 
     talosctl upgrade \
       --image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
@@ -401,7 +402,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         Use if the above upgrade fails due to a process holding a file open on disk.
 
     ``` shell title="Shell"
-    TALOS_VERSION="v1.7.0"
+    TALOS_VERSION="v1.7.4"
 
     talosctl upgrade \
       --image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
