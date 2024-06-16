@@ -51,6 +51,11 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
               source  = "clementblaise/age"
               version = "0.1.1"
             }
+            # https://github.com/hashicorp/terraform-provider-local/blob/main/CHANGELOG.md
+            local = {
+              source  = "hashicorp/local"
+              version = "2.5.1"
+            }
             # https://github.com/hashicorp/terraform-provider-kubernetes/blob/main/CHANGELOG.md
             kubernetes = {
               source  = "hashicorp/kubernetes"
@@ -125,6 +130,14 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
         ```
 
     === "Terraform"
+
+        ``` terraform title="File: variables.tf" linenums="1"
+        variable "cluster_name" {
+          description = "The name for the Talos cluster."
+          type        = string
+          nullable    = false
+        }
+        ```
 
         ``` terraform title="File: main.tf" linenums="1"
         resource "local_file" "this" {
@@ -212,7 +225,6 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
           network_policy = false
 
           depends_on = [
-            github_repository_deploy_key.this,
             kubernetes_secret.sops_age,
           ]
         }

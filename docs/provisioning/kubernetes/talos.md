@@ -161,10 +161,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
               ],
               "worker"=[
                 "192.168.1.4",
-                "192.168.1.5",
-                "192.168.1.6",
-                "192.168.1.7",
-                "192.168.1.8"
+                "192.168.1.5"
               ]
             }'
             ```
@@ -210,17 +207,17 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
     for node in "${NODES_CONTROLPLANE[@]}"; do
       echo -n "Node ${node}: "
       talosctl get machinestatus \
-        --insecure \
         --nodes "${node}" \
-        --output jsonpath='{.spec.stage}'
+        --output jsonpath='{.spec.stage}' \
+        --insecure
     done
 
     for node in "${NODES_WORKER[@]}"; do
       echo -n "Node ${node}: "
       talosctl get machinestatus \
-        --insecure \
         --nodes "${node}" \
-        --output jsonpath='{.spec.stage}'
+        --output jsonpath='{.spec.stage}' \
+        --insecure
     done
     ```
 
@@ -777,7 +774,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
     === "CLI"
 
         ``` shell title="Shell"
-        talosctl gen config "${CLUSTER_NAME}" https://192.168.1.101:6443 \
+        talosctl gen config "${CLUSTER_NAME}" "${CLUSTER_ENDPOINT}" \
           --config-patch="@../patches/${CLUSTER_NAME}/all.yaml" \
           --config-patch-control-plane="@../patches/${CLUSTER_NAME}/controlplane.yaml" \
           --install-image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
@@ -876,19 +873,11 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
         ``` shell title="Shell"
         terraform apply
-        terraform output -raw talosconfig > talosconfig
         ```
 
-        !!! info
-
-            * The `talosctl` CLI is required to carry out the following step.
-              The installation steps can be found in the **CLI** tab of the **Install and configure talosctl** step.
-
-            * The environment variables from the **CLI** tab of the **Configure environment variables** step are also required.
-
         ``` shell title="Shell"
-        talosctl config merge talosconfig
-        talosctl config use-context "${CLUSTER_NAME}"
+        terraform output -raw talosconfig > talosconfig
+        export TALOSCONFIG="$(pwd)/talosconfig"
         ```
 
 - Apply talos machine configuration.
@@ -998,14 +987,15 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
     === "CLI"
 
         ``` shell title="Shell"
-        talosctl kubeconfig
-        kubectl config use-context "admin@${CLUSTER_NAME}"
+        talosctl kubeconfig kubeconfig
+        export KUBECONFIG="$(pwd)/kubeconfig"
         ```
 
     === "Terraform"
 
         ``` shell title="Shell"
         terraform output -raw kubeconfig_raw > kubeconfig
+        export KUBECONFIG="$(pwd)/kubeconfig"
         ```
 
 ## Maintenance Steps
