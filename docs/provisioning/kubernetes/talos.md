@@ -32,9 +32,8 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
         === "Cloudkoffer v3"
 
-            ``` shell title="Shell"
+            ``` shell title="File: .envrc" linenums="1"
             CLUSTER_NAME=talos-cloudkoffer-v3
-            CLUSTER_ENDPOINT=https://192.168.1.101:6443
             TALOS_VERSION=v1.7.4
             KUBERNETES_VERSION=1.30.1
             NODES_CONTROLPLANE=(
@@ -55,9 +54,8 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
         === "Cloudkoffer v2"
 
-            ``` shell title="Shell"
+            ``` shell title="File: .envrc" linenums="1"
             CLUSTER_NAME=talos-cloudkoffer-v2
-            CLUSTER_ENDPOINT=https://192.168.1.101:6443
             TALOS_VERSION=v1.7.4
             KUBERNETES_VERSION=1.30.1
             NODES_CONTROLPLANE=(
@@ -78,9 +76,8 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
         === "Cloudkoffer v1"
 
-            ``` shell title="Shell"
+            ``` shell title="File: .envrc" linenums="1"
             CLUSTER_NAME=talos-cloudkoffer-v1
-            CLUSTER_ENDPOINT=https://192.168.1.101:6443
             TALOS_VERSION=v1.7.4
             KUBERNETES_VERSION=1.30.1
             NODES_CONTROLPLANE=(
@@ -98,9 +95,8 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
         === "Cloudkoffer v3"
 
-            ``` shell title="Shell"
+            ``` shell title="File: .envrc" linenums="1"
             TF_VAR_cluster_name=talos-cloudkoffer-v3
-            TF_VAR_cluster_endpoint=https://192.168.1.101:6443
             TF_VAR_talos_version=1.7.4
             TF_VAR_kubernetes_version=1.30.1
             TF_VAR_nodes='{
@@ -123,9 +119,8 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
         === "Cloudkoffer v2"
 
-            ``` shell title="Shell"
+            ``` shell title="File: .envrc" linenums="1"
             TF_VAR_cluster_name=talos-cloudkoffer-v2
-            TF_VAR_cluster_endpoint=https://192.168.1.101:6443
             TF_VAR_talos_version=1.7.4
             TF_VAR_kubernetes_version=1.30.1
             TF_VAR_nodes='{
@@ -148,9 +143,8 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
         === "Cloudkoffer v1"
 
-            ``` shell title="Shell"
+            ``` shell title="File: .envrc" linenums="1"
             TF_VAR_cluster_name=talos-cloudkoffer-v1
-            TF_VAR_cluster_endpoint=https://192.168.1.101:6443
             TF_VAR_talos_version=1.7.4
             TF_VAR_kubernetes_version=1.30.1
             TF_VAR_nodes='{
@@ -790,7 +784,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
     === "CLI"
 
         ``` shell title="Shell"
-        talosctl gen config "${CLUSTER_NAME}" "${CLUSTER_ENDPOINT}" \
+        talosctl gen config "${CLUSTER_NAME}" https://192.168.1.101:6443 \
           --config-patch="@../patches/${CLUSTER_NAME}/all.yaml" \
           --config-patch-control-plane="@../patches/${CLUSTER_NAME}/controlplane.yaml" \
           --install-image="ghcr.io/siderolabs/installer:${TALOS_VERSION}" \
@@ -809,12 +803,6 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         ``` terraform title="File: variables.tf" linenums="1"
         variable "cluster_name" {
           description = "The name for the Talos cluster."
-          type        = string
-          nullable    = false
-        }
-
-        variable "cluster_endpoint" {
-          description = "The endpoint for the Talos cluster."
           type        = string
           nullable    = false
         }
@@ -844,7 +832,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
 
         data "talos_machine_configuration" "controlplane" {
-          cluster_endpoint = var.cluster_endpoint
+          cluster_endpoint = "https://192.168.1.101:6443"
           cluster_name     = var.cluster_name
           machine_secrets  = talos_machine_secrets.this.machine_secrets
           machine_type     = "controlplane"
@@ -861,7 +849,7 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         }
 
         data "talos_machine_configuration" "worker" {
-          cluster_endpoint = var.cluster_endpoint
+          cluster_endpoint = "https://192.168.1.101:6443"
           cluster_name     = var.cluster_name
           machine_secrets  = talos_machine_secrets.this.machine_secrets
           machine_type     = "worker"
@@ -900,16 +888,16 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
         ``` shell title="Shell"
         for node in "${NODES_CONTROLPLANE[@]}"; do
           talosctl apply-config \
-            --insecure \
             --nodes="${node}" \
-            --file=controlplane.yaml
+            --file=controlplane.yaml \
+            --insecure
         done
 
         for node in "${NODES_WORKER[@]}"; do
           talosctl apply-config \
-            --insecure \
             --nodes="${node}" \
-            --file=worker.yaml
+            --file=worker.yaml \
+            --insecure
         done
         ```
 
