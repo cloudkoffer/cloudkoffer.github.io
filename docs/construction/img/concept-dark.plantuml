@@ -3,11 +3,10 @@ skinparam BackGroundColor transparent
 
 rectangle #efefef {
   cloud WAN #A7E8E0
-  cloud lan_1 as "LAN 1" #A7E8E0
-  cloud lan_2 as "LAN 2" #A7E8E0
+  cloud LAN #A7E8E0
   agent router #A0C5D3 [
     <b>Router</b>
-    (DHCP, DNS, PXE/TFTP, NTP)
+    (DHCP, DNS, PXE, TFTP)
   ]
   agent switch as "Switch" #A0C5D3
   frame control_plane as "Control Plane" #F7EAC9 {
@@ -20,8 +19,7 @@ rectangle #efefef {
   }
 
   WAN -- router
-  lan_1 -- router
-  lan_2 -- router
+  LAN -- router
   router -- switch
   switch -- node_1
   switch -- node_2

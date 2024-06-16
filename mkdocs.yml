@@ -113,6 +113,7 @@ nav:
       - Connectivity: 'provisioning/stack/connectivity.md'
       - Observability: 'provisioning/stack/observability.md'
       - Security: 'provisioning/stack/security.md'
+      - Games: 'provisioning/stack/games.md'
   - Gadgets:
     - gadgets/index.md
     - Launchpad MK2: 'gadgets/launchpad-mk2.md'
