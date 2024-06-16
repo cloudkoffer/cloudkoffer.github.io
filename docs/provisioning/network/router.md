@@ -292,7 +292,10 @@ It is then possible to apply it via the web UI.
     reboot
     ```
 
-Afterwards, the dhcp, dns and tftp server is active and the configured ip address on the client configuring the router can be removed.
+!!! info
+
+    The dhcp, dns and tftp server is then active.
+    The static IP address on the client that configured the router should now be swapped for a dynamic one.
 
 ## Maintenance
 

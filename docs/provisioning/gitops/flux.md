@@ -54,7 +54,7 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
             # https://github.com/hashicorp/terraform-provider-kubernetes/blob/main/CHANGELOG.md
             kubernetes = {
               source  = "hashicorp/kubernetes"
-              version = "2.29.0"
+              version = "2.30.0"
             }
             # https://github.com/integrations/terraform-provider-github/releases
             github = {
@@ -64,7 +64,7 @@ Flux v2 is constructed with the GitOps Toolkit, a set of composable APIs and spe
             # https://github.com/fluxcd/terraform-provider-flux/blob/main/CHANGELOG.md
             flux = {
               source  = "fluxcd/flux"
-              version = "1.2.3"
+              version = "1.3.0"
             }
           }
         }
