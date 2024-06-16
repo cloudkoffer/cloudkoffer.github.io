@@ -198,28 +198,44 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     !!! info "Note for the Terraform workflow"
 
-        * The `talosctl` CLI is required to carry out the following step.
-          The installation steps can be found in the **CLI** tab of the **Install and configure talosctl** step.
+        The `talosctl` CLI is required to carry out the following step.
+        The installation steps can be found in the **CLI** tab of the **Install and configure talosctl** step.
 
-        * The environment variables from the **CLI** tab of the **Configure environment variables** step are also required.
+    === "Cloudkoffer v3"
 
-    ``` shell title="Shell"
-    for node in "${NODES_CONTROLPLANE[@]}"; do
-      echo -n "Node ${node}: "
-      talosctl get machinestatus \
-        --nodes "${node}" \
-        --output jsonpath='{.spec.stage}' \
-        --insecure
-    done
+        ``` shell title="Shell"
+        for node in {1..10}; do
+          echo -n "Node ${node}: "
+          talosctl get machinestatus \
+            --nodes="192.168.1.${node}" \
+            --output=jsonpath='{.spec.stage}' \
+            --insecure
+        done
+        ```
 
-    for node in "${NODES_WORKER[@]}"; do
-      echo -n "Node ${node}: "
-      talosctl get machinestatus \
-        --nodes "${node}" \
-        --output jsonpath='{.spec.stage}' \
-        --insecure
-    done
-    ```
+    === "Cloudkoffer v2"
+
+        ``` shell title="Shell"
+        for node in {1..10}; do
+          echo -n "Node ${node}: "
+          talosctl get machinestatus \
+            --nodes="192.168.1.${node}" \
+            --output=jsonpath='{.spec.stage}' \
+            --insecure
+        done
+        ```
+
+    === "Cloudkoffer v1"
+
+        ``` shell title="Shell"
+        for node in {1..5}; do
+          echo -n "Node ${node}: "
+          talosctl get machinestatus \
+            --nodes="192.168.1.${node}" \
+            --output=jsonpath='{.spec.stage}' \
+            --insecure
+        done
+        ```
 
 - Create talos machine secrets.
 
@@ -975,8 +991,8 @@ Talos is a modern OS for running Kubernetes: secure, immutable, and minimal. Tal
 
     !!! info "Note for the Terraform workflow"
 
-        * The `talosctl` CLI is required to carry out the following step.
-          The installation steps can be found in the **CLI** tab of the **Install and configure talosctl** step.
+        The `talosctl` CLI is required to carry out the following step.
+        The installation steps can be found in the **CLI** tab of the **Install and configure talosctl** step.
 
     ``` shell title="Shell"
     talosctl health
