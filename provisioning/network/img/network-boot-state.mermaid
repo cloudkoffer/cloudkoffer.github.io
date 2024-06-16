@@ -1,0 +1,10 @@
+---
+title: Network Boot State Diagram
+---
+stateDiagram-v2
+  direction LR
+  [*] --> UEFI
+  UEFI --> PXE
+  PXE --> iPXE
+  iPXE --> Image
+  Image --> [*]

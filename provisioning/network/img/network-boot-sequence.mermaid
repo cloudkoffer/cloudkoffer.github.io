@@ -1,0 +1,56 @@
+---
+title: Network Boot Sequence Diagram
+---
+sequenceDiagram
+
+    box Node
+    participant uefi as UEFI
+    participant pxe as PXE
+    participant ipxe as iPXE
+    participant image as Image
+    end
+    box Router
+    participant dhcp as DHCP
+    participant tftp as TFTP
+    end
+
+    uefi->>pxe: Load PXE
+    activate pxe
+
+    rect rgb(231, 111, 81)
+        pxe->>dhcp: DHCP Request
+        activate dhcp
+        dhcp->>pxe: DHCP Reply<br>* Bootfile Server: "router"<br>* Bootfile Name: "ipxe.efi"
+        deactivate dhcp
+        pxe->>tftp: TFTP Get<br>* "ipxe.efi"
+        activate tftp
+        tftp->>pxe: TFTP Reply<br>* "ipxe.efi"
+        deactivate tftp
+    end
+
+    pxe->>ipxe: Load iPXE
+    deactivate pxe
+    activate ipxe
+
+    rect rgb(231, 111, 81)
+        ipxe->>dhcp: DHCP Request
+        activate dhcp
+        dhcp->>ipxe: DHCP Reply<br>* Bootfile Server: "router"<br>* Bootfile Name: "boot.ipxe"
+        deactivate dhcp
+        ipxe->>tftp: TFTP Get<br>* "boot.ipxe"
+        activate tftp
+        Note right of tftp: boot.ipxe<br/>---<br/>#35;!ipxe<br/>initrd /initramfs.xz<br/>kernel /vmlinuz ...
+        tftp->>ipxe: TFTP Reply<br>* "boot.ipxe"
+        deactivate tftp
+    end
+
+    rect rgb(231, 111, 81)
+        ipxe->>tftp: TFTP Get<br>* "initramfs.xz"<br>* "vmlinuz"
+        activate tftp
+        tftp->>ipxe: TFTP Reply<br>* "initramfs.xz"<br>* "vmlinuz"
+        deactivate tftp
+    end
+
+    ipxe->>image: Boot Image
+    deactivate ipxe
+    activate image
